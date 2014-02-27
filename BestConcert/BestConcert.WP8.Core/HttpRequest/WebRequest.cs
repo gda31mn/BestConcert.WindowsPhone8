@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace BestConcert.WP8.Core.HttpRequest
 {
-    public static class WebRequest
+    static class WebRequest
     {
         private static string _cookie;
 

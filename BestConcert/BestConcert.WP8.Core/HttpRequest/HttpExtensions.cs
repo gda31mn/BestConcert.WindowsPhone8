@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace BestConcert.WP8.Core.HttpRequest
 {
-    public static class HttpExtensions
+    static class HttpExtensions
     {
         public static Task<Stream> GetRequestStreamAsync(this HttpWebRequest request)
         {
@@ -43,7 +43,7 @@ namespace BestConcert.WP8.Core.HttpRequest
         }
     }
 
-    public static class HttpMethod
+    static class HttpMethod
     {
         public static string Head { get { return "HEAD"; } }
         public static string Post { get { return "POST"; } }

@@ -83,7 +83,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ApiBestConcert\BestConcert.cs" />
+    <Compile Include="ApiBestConcert\BestConcertManagement.cs" />
     <Compile Include="HttpRequest\HttpExtensions.cs" />
     <Compile Include="HttpRequest\WebRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
