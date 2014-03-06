@@ -19,7 +19,7 @@ namespace BestConcert.WP8.Core.Provider
         /// <param name="username"></param>
         /// <param name="password"></param>
         /// <returns>Boolean</returns>
-        public static async Task<string> SignInAsync (string username, string password)
+        public static async Task<object[]> SignInAsync (string username, string password)
         {
             try
             {
@@ -28,7 +28,6 @@ namespace BestConcert.WP8.Core.Provider
             }
             catch (Exception exception)
             {
-
                 throw new Exception(exception.Message);
             }
         }
@@ -182,7 +181,7 @@ namespace BestConcert.WP8.Core.Provider
         {
             try
             {
-                var req = await BestConcertManagement.GetAllOrdersFromUserIdAsync();
+                //var req = await BestConcertManagement.GetAllOrdersFromUserIdAsync();
                 //var result = JsonConvert.DeserializeObject<List<ConcertModel>>(req);
 
                 //return result;
