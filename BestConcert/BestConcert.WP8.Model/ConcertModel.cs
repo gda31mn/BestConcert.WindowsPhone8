@@ -8,6 +8,7 @@ namespace BestConcert.WP8.Model
 {
     public class ConcertModel
     {
+        public string Name { get; set; }
         public string Artist { get; set; }
         public string Genre { get; set; }
         public int Price { get; set; }

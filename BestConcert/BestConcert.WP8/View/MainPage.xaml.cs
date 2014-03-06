@@ -1,4 +1,6 @@
-﻿using Microsoft.Phone.Controls;
+﻿using System.Windows;
+using BestConcert.WP8.ViewModel.ViewModel;
+using Microsoft.Phone.Controls;
 
 namespace BestConcert.WP8.View
 {
@@ -13,20 +15,10 @@ namespace BestConcert.WP8.View
             //BuildLocalizedApplicationBar();
         }
 
-        // Sample code for building a localized ApplicationBar
-        //private void BuildLocalizedApplicationBar()
-        //{
-        //    // Set the page's ApplicationBar to a new instance of ApplicationBar.
-        //    ApplicationBar = new ApplicationBar();
-
-        //    // Create a new button and set the text value to the localized string from AppResources.
-        //    ApplicationBarIconButton appBarButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.add.rest.png", UriKind.Relative));
-        //    appBarButton.Text = AppResources.AppBarButtonText;
-        //    ApplicationBar.Buttons.Add(appBarButton);
-
-        //    // Create a new menu item with the localized string from AppResources.
-        //    ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.AppBarMenuItemText);
-        //    ApplicationBar.MenuItems.Add(appBarMenuItem);
-        //}
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            this.autoCompleteBox1.Text = "";
+            (DataContext as MainViewModel).initList();
+        }
     }
 }

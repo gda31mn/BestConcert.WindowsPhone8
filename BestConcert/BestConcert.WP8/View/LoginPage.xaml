@@ -12,24 +12,65 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True">
+    <UserControl.Resources>
+        <Style x:Key="LoginGrid" TargetType="Grid">
+            <Setter Property="Background" Value="#74675A" />
+        </Style>
+        <Style x:Key="LoginButton" TargetType="Button">
+            <Setter Property="Background" Value="#74675A" />
+            <Setter Property="FontSize" Value="32" />
+            <Setter Property="FontFamily" Value="Segoe WP" />
+            <Setter Property="Margin" Value="0,20,0,0" />
+        </Style>
+        <Style x:Key="LoginTextBlock" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#FF74675A" />
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Margin" Value="12,20,0,0" />
+        </Style>
+        <Style x:Key="LoginTextBox" TargetType="TextBox">
+            <Setter Property="Height" Value="72"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="BorderBrush" Value="#FF74675A"/>
+        </Style>
+        <Style x:Key="LoginPasswordBox" TargetType="PasswordBox">
+            <Setter Property="Height" Value="72"/>
+            <Setter Property="BorderBrush" Value="#FF74675A"/>
+        </Style>
+    </UserControl.Resources>
 
-    <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="MY APPLICATION" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="page name" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
-        </StackPanel>
+        <Grid Grid.Row="0" x:Name="HeaderTitleApplication" Style="{StaticResource LoginGrid}" Margin="0,0,0,615" Grid.RowSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
 
-        <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-
+            <Image Grid.Column="0" Source="/Assets/Tiles/FlipCycleTileLarge.png"/>
+            <TextBlock Grid.Column="1" Text="Bienvenue" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         </Grid>
+
+        <StackPanel Grid.Row="1" HorizontalAlignment="Left" Height="615" VerticalAlignment="Center" Width="480" Margin="0,153,0,0" Background="White">
+            <StackPanel>
+                <TextBlock Text="Email :" Style="{StaticResource LoginTextBlock}"/>
+                <TextBox x:Name="EmailTextBox" Style="{StaticResource LoginTextBox}" Text="{Binding LoginEmail, Mode=TwoWay}"/>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="Mot de passe :" Style="{StaticResource LoginTextBlock}"/>
+                <PasswordBox  x:Name="PasswordTextBox" Style="{StaticResource LoginPasswordBox}"  Password="{Binding LoginPassword,Mode=TwoWay}"/>
+            </StackPanel>
+            <Button x:Name="LoginButton" Content="Connexion" Command="{Binding LoginCommand}" Style="{StaticResource LoginButton}"/>
+            <TextBlock Foreground="Black" HorizontalAlignment="Center" Text="Connection..." Visibility="{Binding ProgressVisibility,Mode=TwoWay}"/>
+            <ProgressBar IsIndeterminate="True"  Visibility="{Binding ProgressVisibility,Mode=TwoWay}" Height="20" Foreground="Black" />
+            <TextBlock Foreground="Red" HorizontalAlignment="Center" Text="Vérifier vos informations" Visibility="{Binding VerifVisibility}"/>
+        </StackPanel>
     </Grid>
 
 </phone:PhoneApplicationPage>
