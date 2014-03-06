@@ -1,3 +1,5 @@
+using System.Threading.Tasks;
+using BestConcert.WP8.Core.Provider;
 using GalaSoft.MvvmLight;
 
 namespace BestConcert.WP8.ViewModel.ViewModel
@@ -21,6 +23,7 @@ namespace BestConcert.WP8.ViewModel.ViewModel
         /// </summary>
         public MainViewModel()
         {
+
             ////if (IsInDesignMode)
             ////{
             ////    // Code runs in Blend --> create design time data.
@@ -29,6 +32,14 @@ namespace BestConcert.WP8.ViewModel.ViewModel
             ////{
             ////    // Code runs "for real"
             ////}
+            
+            TestRequete();
+            
+        }
+
+        public async Task TestRequete()
+        {
+            var result = await ManagementProvider.GetAllConcertAsync();
         }
     }
 }

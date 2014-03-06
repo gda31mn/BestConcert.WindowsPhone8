@@ -104,6 +104,16 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BestConcert.WP8.Core\BestConcert.WP8.Core.csproj">
+      <Project>{8AF535F5-A060-4160-A3C0-F9F0C1922D63}</Project>
+      <Name>BestConcert.WP8.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BestConcert.WP8.Model\BestConcert.WP8.Model.csproj">
+      <Project>{A251C845-D5B4-4AE1-9A76-103A4B13F857}</Project>
+      <Name>BestConcert.WP8.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <ProjectExtensions />
