@@ -14,21 +14,19 @@ namespace BestConcert.WP8.Core.ApiBestConcert
         private const string urlBestConcert = "http://webserviceing3.cloudapp.net/API/";
 
         #region User
-        internal static async Task<bool> Login(string username, string password)
+        internal static async Task<string> Login(string username, string password)
         {
-            var result = false;
-
             try
             {
                 var requestUrl = string.Format(urlBestConcert + "/user/signin?email={0}&password={1}", username, password);
                 var req = await WebRequest.Create(requestUrl, "GET", false);
 
-                if (req == "OK")
+                if (req == "-1")
                 {
-                    result = true;
+                    throw new Exception("Invalide login/password !");
                 }
 
-                return result;
+                return req;
             }
             catch (WebException ex)
             {

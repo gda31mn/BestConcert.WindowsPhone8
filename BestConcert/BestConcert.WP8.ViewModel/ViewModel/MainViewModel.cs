@@ -1,8 +1,10 @@
 
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using BestConcert.WP8.Model;
+using BestConcert.WP8.ViewModel.Tools;
 using Cimbalino.Phone.Toolkit.Services;
 using System.Threading.Tasks;
 using BestConcert.WP8.Core.Provider;
@@ -54,9 +56,9 @@ namespace BestConcert.WP8.ViewModel.ViewModel
             }
         }
 
-        private ObservableCollection<ConcertModel> _concertsListByKind;
+        private List<KingOfConcertGroup<ConcertModel>> _concertsListByKind;
 
-        public ObservableCollection<ConcertModel> ConcertsListByKind
+        public List<KingOfConcertGroup<ConcertModel>> ConcertsListByKind
         {
             get { return _concertsListByKind; }
             set
@@ -67,9 +69,9 @@ namespace BestConcert.WP8.ViewModel.ViewModel
         }
 
 
-        private ObservableCollection<ConcertModel> _concertsListByArtist;
+        private List<KingOfConcertGroup<ConcertModel>> _concertsListByArtist;
 
-        public ObservableCollection<ConcertModel> ConcertsListByArtist
+        public List<KingOfConcertGroup<ConcertModel>> ConcertsListByArtist
         {
             get { return _concertsListByArtist; }
             set
@@ -137,14 +139,14 @@ namespace BestConcert.WP8.ViewModel.ViewModel
                     ConcertArtist =
                         new ObservableCollection<string>(ConcertsListByDate.Select(concert => concert.Artist).ToList());
                     break;
-                case 1:
-                    ConcertArtist =
-                        new ObservableCollection<string>(ConcertsListByKind.Select(concert => concert.Artist).ToList());
-                    break;
-                case 2:
-                    ConcertArtist =
-                        new ObservableCollection<string>(ConcertsListByArtist.Select(concert => concert.Artist).ToList());
-                    break;
+                //case 1:
+                //    ConcertArtist =
+                //        new ObservableCollection<string>(ConcertsListByKind.Select(concert => concert.Artist).ToList());
+                //    break;
+                //case 2:
+                //    ConcertArtist =
+                //        new ObservableCollection<string>(ConcertsListByArtist.Select(concert => concert.Artist).ToList());
+                //    break;
             }
         }
 
@@ -165,8 +167,8 @@ namespace BestConcert.WP8.ViewModel.ViewModel
 
             ConcertsListFromWeb = new ObservableCollection<ConcertModel>();
             ConcertsListByDate = new ObservableCollection<ConcertModel>();
-            ConcertsListByKind = new ObservableCollection<ConcertModel>();
-            ConcertsListByArtist = new ObservableCollection<ConcertModel>();
+            ConcertsListByKind = new List<KingOfConcertGroup<ConcertModel>>();
+            ConcertsListByArtist = new List<KingOfConcertGroup<ConcertModel>>();
 
 
             LoadPage = new RelayCommand(loadPage);
@@ -187,9 +189,21 @@ namespace BestConcert.WP8.ViewModel.ViewModel
         public async void initList()
         {
             ConcertsListFromWeb = new ObservableCollection<ConcertModel>();
-            var concertList = await ManagementProvider.GetAllUserAsync();
+            var concertList = await ManagementProvider.GetAllConcertAsync();
             if (concertList != null)
             {
+                ConcertsListFromWeb = new ObservableCollection<ConcertModel>(concertList);
+                ConcertsListByDate = new ObservableCollection<ConcertModel>(ConcertsListFromWeb.OrderBy(concert => concert.Date).ToList());
+                 var byKind = ConcertsListFromWeb.OrderBy(concert => concert.Genre).ToList();
+                 var byArtist = ConcertsListFromWeb.OrderBy(concert => concert.Artist).ToList();
+
+                 ConcertsListByKind = KingOfConcertGroup<ConcertModel>.CreateGroups(byKind,
+                System.Threading.Thread.CurrentThread.CurrentUICulture,
+                (ConcertModel s) => { return s.Genre; }, true);
+
+                 ConcertsListByArtist = KingOfConcertGroup<ConcertModel>.CreateGroups(byArtist,
+                 System.Threading.Thread.CurrentThread.CurrentUICulture,
+                 (ConcertModel s) => { return s.Genre; }, true);
                 //ConcertsListFromWeb = new ObservableCollection<ConcertModel>(concertList.Concert);
                 //ConcertArtist =
                 //    new ObservableCollection<string>(ConcertsListFromWeb.Select(poste => poste.Artist).ToList());
@@ -209,7 +223,7 @@ namespace BestConcert.WP8.ViewModel.ViewModel
             ConcertsListByDate = new ObservableCollection<ConcertModel>();
             ConcertsListByDate = ConcertsListFromWeb;
 
-            ConcertsListByKind = new ObservableCollection<ConcertModel>();
+            ConcertsListByKind = new List<KingOfConcertGroup<ConcertModel>>();
         }
 
         private void loadPage()
@@ -229,13 +243,13 @@ namespace BestConcert.WP8.ViewModel.ViewModel
                     break;
                 case 1:
                     ConcertsListByKind =
-                        new ObservableCollection<ConcertModel>(
-                            ConcertsListByKind.Where(poste => poste.Artist == name).ToList());
+                        new List<KingOfConcertGroup<ConcertModel>>(
+                            ConcertsListByKind.Where(poste => poste.Key == name).ToList());
                     break;
                 case 2:
                     ConcertsListByArtist =
-                        new ObservableCollection<ConcertModel>(
-                            ConcertsListByArtist.Where(poste => poste.Artist == name).ToList());
+                        new List<KingOfConcertGroup<ConcertModel>>(
+                            ConcertsListByArtist.Where(poste => poste.Key == name).ToList());
                     break;
             }
         }

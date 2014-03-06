@@ -5,7 +5,8 @@
              xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d1p1:Ignorable="d" 
              xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:viewModel="clr-namespace:BestConcert.WP8.ViewModel;assembly=BestConcert.WP8.ViewModel">
+             xmlns:viewModel="clr-namespace:BestConcert.WP8.ViewModel;assembly=BestConcert.WP8.ViewModel"
+             xmlns:converter="clr-namespace:BestConcert.WP8.Converter">
     <!--Application Resources-->
     <Application.Resources>
         <ResourceDictionary>
@@ -14,6 +15,9 @@
             </ResourceDictionary.MergedDictionaries>
             <local:LocalizedStrings xmlns:local="clr-namespace:BestConcert.WP8" x:Key="LocalizedStrings" />
             <viewModel:ViewModelLocator x:Key="Locator" d:IsDataSource="True"/>
+            
+            <!-- converter -->
+            <converter:DebugConverter x:Key="DebugConverter" />
         </ResourceDictionary>
     </Application.Resources>
     <Application.ApplicationLifetimeObjects>

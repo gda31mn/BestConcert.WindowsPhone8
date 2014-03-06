@@ -1,4 +1,16 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- DataTemplate -->
     
+    <!-- ListView -->
+
+    <!-- LonglistSelector -->
+
+    <!-- Button -->
+
+    <!-- Textbox -->
+
+    <!-- Textblock -->
+
 </ResourceDictionary>
