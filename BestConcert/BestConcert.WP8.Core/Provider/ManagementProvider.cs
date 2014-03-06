@@ -177,12 +177,57 @@ namespace BestConcert.WP8.Core.Provider
 
         #region Order
 
-        public static async Task GetAllOrdersFromUserIdAsync()
+        public static async Task<List<Order>> GetAllOrdersFromUserIdAsync(string userId)
         {
             try
             {
-                //var req = await BestConcertManagement.GetAllOrdersFromUserIdAsync();
-                //var result = JsonConvert.DeserializeObject<List<ConcertModel>>(req);
+                var req = await BestConcertManagement.GetAllOrdersFromUserIdAsync(userId);
+                var result = JsonConvert.DeserializeObject<List<Order>>(req);
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public static async Task<Order> GetCurrentOrderFromUserIdAsync(string userId)
+        {
+            try
+            {
+                var req = await BestConcertManagement.GetCurrentOrderFromUserIdAsync(userId);
+                var result = JsonConvert.DeserializeObject<Order>(req);
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public static async Task<List<Order>> GetHistoryOrdersFromUserIdAsync(string userId)
+        {
+            try
+            {
+                var req = await BestConcertManagement.GetHistoryOrdersFromUserIdAsync(userId);
+                var result = JsonConvert.DeserializeObject<List<Order>>(req);
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public static async Task AddOrderItemAsync(string userId, string concertId, string quantity)
+        {
+            try
+            {
+                var req = await BestConcertManagement.AddOrderItemAsync( userId, concertId, quantity);
+                //var result = JsonConvert.DeserializeObject<List<Order>>(req);
 
                 //return result;
             }
@@ -191,6 +236,19 @@ namespace BestConcert.WP8.Core.Provider
                 throw new Exception(ex.Message);
             }
         }
+
+        public static async Task PayeOrderAsync(string orderId)
+        {
+            try
+            {
+                var req = await BestConcertManagement.PayeOrderAsync(orderId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         #endregion
     }
 }
