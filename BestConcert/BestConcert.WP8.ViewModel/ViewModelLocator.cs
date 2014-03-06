@@ -45,6 +45,7 @@ namespace BestConcert.WP8.ViewModel
             SimpleIoc.Default.Register<INavigationService, NavigationService>();
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<LoginViewModel>();
+            SimpleIoc.Default.Register<SaveUserViewModel>();
         }
 
         public MainViewModel Main
@@ -60,6 +61,14 @@ namespace BestConcert.WP8.ViewModel
             get
             {
                 return ServiceLocator.Current.GetInstance<LoginViewModel>();
+            }
+        }
+
+        public SaveUserViewModel Save
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<SaveUserViewModel>();
             }
         }
         

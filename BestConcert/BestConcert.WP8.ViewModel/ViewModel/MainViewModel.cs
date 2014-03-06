@@ -193,21 +193,7 @@ namespace BestConcert.WP8.ViewModel.ViewModel
             if (concertList != null)
             {
                 ConcertsListFromWeb = new ObservableCollection<ConcertModel>(concertList);
-                ConcertsListByDate = new ObservableCollection<ConcertModel>(ConcertsListFromWeb.OrderBy(concert => concert.Date).ToList());
-                 var byKind = ConcertsListFromWeb.OrderBy(concert => concert.Genre).ToList();
-                 var byArtist = ConcertsListFromWeb.OrderBy(concert => concert.Artist).ToList();
-
-                 ConcertsListByKind = KingOfConcertGroup<ConcertModel>.CreateGroups(byKind,
-                System.Threading.Thread.CurrentThread.CurrentUICulture,
-                (ConcertModel s) => { return s.Genre; }, true);
-
-                 ConcertsListByArtist = KingOfConcertGroup<ConcertModel>.CreateGroups(byArtist,
-                 System.Threading.Thread.CurrentThread.CurrentUICulture,
-                 (ConcertModel s) => { return s.Genre; }, true);
-                //ConcertsListFromWeb = new ObservableCollection<ConcertModel>(concertList.Concert);
-                //ConcertArtist =
-                //    new ObservableCollection<string>(ConcertsListFromWeb.Select(poste => poste.Artist).ToList());
-                //setPostesListe();
+                setPostesListe();
             }
         }
 
@@ -219,11 +205,17 @@ namespace BestConcert.WP8.ViewModel.ViewModel
 
         private void setPostesListe()
         {
-            //secouriste = new Secouriste("BURRELL", "Sarah", "05.55.51.22.56", "sarah@gmail.com");
-            ConcertsListByDate = new ObservableCollection<ConcertModel>();
-            ConcertsListByDate = ConcertsListFromWeb;
+            ConcertsListByDate = new ObservableCollection<ConcertModel>(ConcertsListFromWeb.OrderBy(concert => concert.Date).ToList());
+            var byKind = ConcertsListFromWeb.OrderBy(concert => concert.Genre).ToList();
+            var byArtist = ConcertsListFromWeb.OrderBy(concert => concert.Artist).ToList();
 
-            ConcertsListByKind = new List<KingOfConcertGroup<ConcertModel>>();
+            ConcertsListByKind = KingOfConcertGroup<ConcertModel>.CreateGroups(byKind,
+           System.Threading.Thread.CurrentThread.CurrentUICulture,
+           (ConcertModel s) => { return s.Genre; }, true);
+
+            ConcertsListByArtist = KingOfConcertGroup<ConcertModel>.CreateGroups(byArtist,
+            System.Threading.Thread.CurrentThread.CurrentUICulture,
+            (ConcertModel s) => { return s.Artist; }, true);
         }
 
         private void loadPage()

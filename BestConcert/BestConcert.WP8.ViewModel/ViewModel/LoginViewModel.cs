@@ -106,8 +106,9 @@ namespace BestConcert.WP8.ViewModel.ViewModel
                 passwordSha = CalculateSha1(LoginPassword);
 
 
-                var connection = await ManagementProvider.SignInAsync(LoginEmail, passwordSha);
-                if (connection.success == true)
+                object[] connection = await ManagementProvider.SignInAsync(LoginEmail, passwordSha);
+                connection[0] = true;
+                if ((bool)connection[0])
                 {
                     VerifVisibility = Visibility.Collapsed;
 
