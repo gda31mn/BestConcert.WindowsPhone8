@@ -1,8 +1,11 @@
+
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using BestConcert.WP8.Model;
 using Cimbalino.Phone.Toolkit.Services;
+using System.Threading.Tasks;
+using BestConcert.WP8.Core.Provider;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.Phone.Maps.Services;
@@ -224,6 +227,5 @@ namespace BestConcert.WP8.ViewModel.ViewModel
                     ConcertsListByArtist = new ObservableCollection<ConcertModel>(ConcertsListByArtist.Where(poste => poste.Artist == name).ToList());
                     break;
             }
-        }
     }
 }
