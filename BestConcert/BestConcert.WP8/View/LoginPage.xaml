@@ -11,7 +11,8 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="True"
+    DataContext="{Binding Login,Source={StaticResource Locator}}">
     <UserControl.Resources>
         <Style x:Key="LoginGrid" TargetType="Grid">
             <Setter Property="Background" Value="#74675A" />
