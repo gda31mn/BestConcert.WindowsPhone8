@@ -25,55 +25,6 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <phone:PhoneApplicationPage.Resources>
-        <DataTemplate x:Key="ItemPostTemplate">
-            <Border BorderThickness="3">
-                <StackPanel >
-                    <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="450">
-                        <Grid Margin="0" VerticalAlignment="Center">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="108*"/>
-                                <ColumnDefinition Width="73*"/>
-                                <ColumnDefinition Width="44*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="8*"/>
-                                <RowDefinition Height="5*"/>
-                                <RowDefinition Height="3*"/>
-                            </Grid.RowDefinitions>
-                            <Rectangle Fill="#FF3C8EF1" Margin="0" Grid.ColumnSpan="3"/>
-                            <TextBlock Foreground="Black" Text="{Binding Intitule}" Margin="5,0,0,0" FontSize="17.333" Grid.ColumnSpan="3" FontWeight="Bold"/>
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Date, StringFormat=\{0:D\}}" VerticalAlignment="Top" Grid.Row="1" FontSize="21.333" Foreground="Black" Margin="30,0,0,0" Grid.ColumnSpan="2"/>
-                            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="2" Orientation="Horizontal" Margin="30,0,0,0" Width="176" Height="25">
-                                <Rectangle Height="20" Width="20" Fill="#FFAEAEAE" HorizontalAlignment="Center" Margin="0" >
-                                    <Rectangle.OpacityMask>
-                                        <ImageBrush ImageSource="/Assets/building.png"/>
-                                    </Rectangle.OpacityMask>
-                                </Rectangle>
-                                <TextBlock Text="{Binding Lieu}" Margin="5,0,0,0" FontSize="14.667" Foreground="#AA000000" HorizontalAlignment="Left" Height="20" VerticalAlignment="Center"/>
-                            </StackPanel>
-                            <StackPanel HorizontalAlignment="Left" Grid.RowSpan="3" VerticalAlignment="Top" Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Margin="0" Height="25">
-                                <Rectangle Fill="#FFAEAEAE" Margin="0" Height="20" Width="20" HorizontalAlignment="Center">
-                                    <Rectangle.OpacityMask>
-                                        <ImageBrush Stretch="Fill" ImageSource="/Assets/clock.png"/>
-                                    </Rectangle.OpacityMask>
-                                </Rectangle>
-                                <TextBlock Text="{Binding HeureDebut, StringFormat=\{0:t\} -}" Margin="5,0,0,0" FontSize="14.667" Foreground="#AA000000" HorizontalAlignment="Center" Height="20" VerticalAlignment="Center"/>
-                                <TextBlock Text="{Binding HeureFin, StringFormat=\{0:t\}}" Margin="5,0,0,0" FontSize="16" Foreground="#AA000000" HorizontalAlignment="Left" Height="20" VerticalAlignment="Center"/>
-                            </StackPanel>
-                            <Rectangle Fill="#FF545554" Grid.Column="2" Margin="0" Grid.Row="1" Width="30" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.RowSpan="2">
-                                <Rectangle.OpacityMask>
-                                    <ImageBrush Stretch="Fill" ImageSource="{Binding Etat, Converter={StaticResource StateToImageSourceConverter}}"/>
-                                </Rectangle.OpacityMask>
-                            </Rectangle>
-                        </Grid>
-                    </Border>
-                </StackPanel>
-            </Border>
-        </DataTemplate>
-        <Style x:Key="BorderSearchPanel" TargetType="TextBox">
-            <Setter Property="BorderBrush" Value="Black" />
-            <Setter Property="BorderThickness" Value="3,3,3,3" />
-        </Style>
         <Style x:Key="HeaderTitleGrid" TargetType="Grid">
             <Setter Property="Background" Value="#74675A" />
         </Style>
@@ -126,7 +77,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style x:Key="TextBoxStyle1" TargetType="TextBox">
+        <Style x:Key="TextboxSearchStyle" TargetType="TextBox">
             <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilyNormal}"/>
             <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMediumLarge}"/>
             <Setter Property="Background" Value="{StaticResource PhoneTextBoxBrush}"/>
@@ -208,7 +159,7 @@
                                         <ColumnDefinition Width="auto"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
                                     <ContentControl x:Name="ContentElement" BorderThickness="0" HorizontalContentAlignment="Stretch" Margin="0,0,0,4" Padding="{TemplateBinding Padding}" VerticalContentAlignment="Stretch" />
-                                    <Image Source="/Assets/search.png" HorizontalAlignment="Left"  VerticalAlignment="Top"  Grid.Column="1"/>
+                                    <Image Source="/Assets/Image/search.png" HorizontalAlignment="Left"  VerticalAlignment="Top"  Grid.Column="1"/>
                                 </Grid>
                             </Border>
                         </Grid>
@@ -318,9 +269,79 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <DataTemplate x:Key="AddrBookGroupHeaderTemplate">
+            <Border Background="Transparent" Padding="5">
+                <Border Background="{StaticResource PhoneAccentBrush}" BorderBrush="{StaticResource PhoneAccentBrush}" BorderThickness="2" Width="62" 
+         Height="62" Margin="0,0,18,0" HorizontalAlignment="Left">
+                    <TextBlock Text="{Binding Key}" Foreground="{StaticResource PhoneForegroundBrush}" FontSize="48" Padding="6" 
+            FontFamily="{StaticResource PhoneFontFamilySemiLight}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                </Border>
+            </Border>
+        </DataTemplate>
+        <phone:JumpListItemBackgroundConverter x:Key="BackgroundConverter"/>
+        <phone:JumpListItemForegroundConverter x:Key="ForegroundConverter"/>
+        <Style x:Key="AddrBookJumpListStyle" TargetType="phone:LongListSelector">
+            <Setter Property="GridCellSize"  Value="113,113"/>
+            <Setter Property="LayoutMode" Value="Grid" />
+            <Setter Property="ItemTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <Border Background="{Binding Converter={StaticResource BackgroundConverter}}" Width="113" Height="113" Margin="6" >
+                            <TextBlock Text="{Binding Key}" FontFamily="{StaticResource PhoneFontFamilySemiBold}" FontSize="48" Padding="6" 
+               Foreground="{Binding Converter={StaticResource ForegroundConverter}}" VerticalAlignment="Center"/>
+                        </Border>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <DataTemplate x:Key="ConcertItemTemplate">
+            <Border BorderThickness="3">
+                <StackPanel >
+                    <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="450">
+                        <Grid Margin="0" VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="108*"/>
+                                <ColumnDefinition Width="73*"/>
+                                <ColumnDefinition Width="44*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="8*"/>
+                                <RowDefinition Height="5*"/>
+                                <RowDefinition Height="3*"/>
+                            </Grid.RowDefinitions>
+                            <Rectangle Fill="#FF3C8EF1" Margin="0" Grid.ColumnSpan="3"/>
+                            <TextBlock Foreground="Black" Text="{Binding Artist}" Margin="5,0,0,0" FontSize="17.333" Grid.ColumnSpan="3" FontWeight="Bold"/>
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Date, StringFormat=\{0:D\}}" VerticalAlignment="Top" Grid.Row="1" FontSize="21.333" Foreground="Black" Margin="30,0,0,0" Grid.ColumnSpan="2"/>
+                            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="2" Orientation="Horizontal" Margin="30,0,0,0" Width="176" Height="25">
+                                <Rectangle Height="20" Width="20" Fill="#FFAEAEAE" HorizontalAlignment="Center" Margin="0" >
+                                    <Rectangle.OpacityMask>
+                                        <ImageBrush ImageSource="/Assets/building.png"/>
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                                <TextBlock Text="{Binding Location}" Margin="5,0,0,0" FontSize="14.667" Foreground="#AA000000" HorizontalAlignment="Left" Height="20" VerticalAlignment="Center"/>
+                            </StackPanel>
+                            <StackPanel HorizontalAlignment="Left" Grid.RowSpan="3" VerticalAlignment="Top" Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Margin="0" Height="25">
+                                <Rectangle Fill="#FFAEAEAE" Margin="0" Height="20" Width="20" HorizontalAlignment="Center">
+                                    <Rectangle.OpacityMask>
+                                        <ImageBrush Stretch="Fill" ImageSource="/Assets/clock.png"/>
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                                <TextBlock Text="{Binding HeureDebut, StringFormat=\{0:t\} -}" Margin="5,0,0,0" FontSize="14.667" Foreground="#AA000000" HorizontalAlignment="Center" Height="20" VerticalAlignment="Center"/>
+                                <TextBlock Text="{Binding HeureFin, StringFormat=\{0:t\}}" Margin="5,0,0,0" FontSize="16" Foreground="#AA000000" HorizontalAlignment="Left" Height="20" VerticalAlignment="Center"/>
+                            </StackPanel>
+                            <Rectangle Fill="#FF545554" Grid.Column="2" Margin="0" Grid.Row="1" Width="30" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.RowSpan="2">
+                                <Rectangle.OpacityMask>
+                                    <ImageBrush Stretch="Fill" />
+                                </Rectangle.OpacityMask>
+                            </Rectangle>
+                        </Grid>
+                    </Border>
+                </StackPanel>
+            </Border>
+        </DataTemplate>
     </phone:PhoneApplicationPage.Resources>
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" d:DataContext="{d:DesignData ../SampleData/MainDataSample/MainDataSample.xaml}">
+    <Grid x:Name="LayoutRoot">
         <i:Interaction.Behaviors>
             <behaviors:ApplicationBarBehavior IsVisible="True">
                 <behaviors:ApplicationBarIconButton
@@ -393,41 +414,45 @@
                 <ListBoxItem Margin="0,10,0,10" HorizontalAlignment="Center">
                     <Border BorderThickness="0,0,1,0" Width="145" BorderBrush="White" Margin="0,0,5,0">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Margin="0" Text="By kind" Style="{StaticResource TextBlockText}"/>
-                            <TextBlock Margin="10,0,0,0" Text="{Binding ConcertsListByKind.Count}" Style="{StaticResource TextBlockText}"/>
+                            <TextBlock Margin="0" Text="By kind" Style="{StaticResource TextBlockText}" />
                         </StackPanel>
                     </Border>
                 </ListBoxItem>
                 <ListBoxItem Margin="0,10,0,10" HorizontalAlignment="Left">
                     <StackPanel  Orientation="Horizontal" Width="152" >
                         <TextBlock Margin="0" Text="By artist" Style="{StaticResource TextBlockText}"/>
-                        <TextBlock Margin="10,0,0,0" Text="{Binding ConcertsListByArtist.Count}" Style="{StaticResource TextBlockText}" />
+
                     </StackPanel>
                 </ListBoxItem>
             </ListBox>
             <StackPanel Orientation="Horizontal" Grid.Row="1">
                 <toolkit:AutoCompleteBox HorizontalAlignment="Left"  Width="400"                                   
-                               Name="autoCompleteBox1" VerticalAlignment="Top" TextBoxStyle="{StaticResource TextBoxStyle1}"
-                               ItemsSource="{Binding PostesName}" BorderBrush="#BF000000" SelectedItem="{Binding SelectedSearch,Mode=TwoWay}" Text="{Binding SearchValue,Mode=TwoWay}">
+                               Name="autoCompleteBox1" VerticalAlignment="Top" TextBoxStyle="{StaticResource TextboxSearchStyle}"
+                               ItemsSource="{Binding ConcertArtist}" BorderBrush="#BF000000" SelectedItem="{Binding SelectedSearch,Mode=TwoWay}" Text="{Binding SearchValue,Mode=TwoWay}">
                 </toolkit:AutoCompleteBox>
                 <Button  Click="ButtonBase_OnClick"  VerticalAlignment="Center" Foreground="Black" Style="{StaticResource ButtonStyle1}" BorderBrush="Black">
                     <Button.Content>
-                        <Image Height="40"  Stretch="UniformToFill" Source="/Assets/cancel.png"></Image>
+                        <Image Height="40"  Stretch="UniformToFill" Source="/Assets/Image/cancel.png"></Image>
                     </Button.Content>
                 </Button>
             </StackPanel>
             <phone:Pivot x:Name="ContentPivot"
                             Grid.Row="2"
                             Margin="0,0,0,0"
-                         d:DataContext="{d:DesignData ../SampleData/MainDataSample/MainDataSample.xaml}" Style="{StaticResource PivotStyle}" ItemContainerStyle="{StaticResource PivotItemStyle1}" SelectedIndex="{Binding SelectedIndex,Mode=TwoWay}">
+                        Style="{StaticResource PivotStyle}" ItemContainerStyle="{StaticResource PivotItemStyle1}" SelectedIndex="{Binding SelectedIndex,Mode=TwoWay}">
                 <phone:PivotItem Margin="12,0">
-                    <ListBox ItemsSource="{Binding PosteDeSecours}" ItemTemplate="{StaticResource ItemPostTemplate}"/>
+                    <ListBox ItemsSource="{Binding ConcertsListByDate}" ItemTemplate="{StaticResource ConcertItemTemplate}"/>
                 </phone:PivotItem>
                 <phone:PivotItem>
-                    <ListBox ItemsSource="{Binding MyPostes}" ItemTemplate="{StaticResource ItemPostTemplate}"/>
+                    <phone:LongListSelector
+                    x:Name="concertByKind" JumpListStyle="{StaticResource AddrBookJumpListStyle}" Background="Transparent" LayoutMode="List" IsGroupingEnabled="true"
+  HideEmptyGroups ="true" GroupHeaderTemplate="{StaticResource AddrBookGroupHeaderTemplate}" ItemsSource="{Binding ConcertsListByKind}" ItemTemplate="{StaticResource ConcertItemTemplate}"/>
                 </phone:PivotItem>
                 <phone:PivotItem>
-                    <ListBox ItemsSource="{Binding PostesEnAttente}" ItemTemplate="{StaticResource ItemPostTemplate}"/>
+                    <phone:LongListSelector
+                    x:Name="concertByArtist" JumpListStyle="{StaticResource AddrBookJumpListStyle}" Background="Transparent" LayoutMode="List" IsGroupingEnabled="true"
+  HideEmptyGroups ="true" GroupHeaderTemplate="{StaticResource AddrBookGroupHeaderTemplate}" ItemsSource="{Binding ConcertsListByArtist}" ItemTemplate="{StaticResource ConcertItemTemplate}"/>
+
                 </phone:PivotItem>
 
             </phone:Pivot>

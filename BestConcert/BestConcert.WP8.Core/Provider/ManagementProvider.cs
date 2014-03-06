@@ -19,7 +19,7 @@ namespace BestConcert.WP8.Core.Provider
         /// <param name="username"></param>
         /// <param name="password"></param>
         /// <returns>Boolean</returns>
-        public static async Task<string> SignInAsync(string username, string password)
+        public static async Task<string> SignInAsync (string username, string password)
         {
             try
             {

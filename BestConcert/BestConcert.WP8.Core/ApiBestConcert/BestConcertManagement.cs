@@ -38,15 +38,18 @@ namespace BestConcert.WP8.Core.ApiBestConcert
         {
             try
             {
+<<<<<<< HEAD
 
                 var requestUrl = string.Format(UrlBestConcert + "/user/getAll");
+=======
+                var requestUrl = string.Format(urlBestConcert + "/user/getAll");
+>>>>>>> 516267659c1e8851afe196970f078fc7378fc9d6
                 var req = await WebRequest.Create(requestUrl, "GET", false);
 
                 return req;
             }
             catch (Exception ex)
             {
-
                 throw new Exception(ex.Message);
             }
         }
