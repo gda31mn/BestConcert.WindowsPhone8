@@ -161,6 +161,7 @@
     <Content Include="Assets\ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Image\check.png" />
     <Content Include="Assets\Image\lock.png" />
     <Content Include="Assets\Image\concert.png" />
     <Content Include="Assets\Image\cancel.png" />

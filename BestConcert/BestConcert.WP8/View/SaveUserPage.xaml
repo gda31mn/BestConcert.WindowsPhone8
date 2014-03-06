@@ -11,10 +11,26 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
-    shell:SystemTray.IsVisible="True">
+    xmlns:Command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:behaviors="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
+    shell:SystemTray.IsVisible="True"
+    DataContext="{Binding Save,Source={StaticResource Locator}}">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
+        <i:Interaction.Behaviors>
+            <behaviors:ApplicationBarBehavior Mode="Minimized" IsMenuEnabled="True" IsVisible="True" Opacity="0.2">
+                <behaviors:ApplicationBarIconButton
+						IconUri="/Assets/Image/check.png"
+						Text="Check" Command="{Binding Check}"/>
+                <behaviors:ApplicationBarIconButton
+						IconUri="/Assets/Image/cancel.png"
+						Text="Cancel" Command="{Binding Cancel}"/>
+            </behaviors:ApplicationBarBehavior>
+        </i:Interaction.Behaviors>
+
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -28,7 +44,18 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-
+            <StackPanel>
+                <TextBlock Text="First Name" Margin="15,0,0,0"></TextBlock>
+                <TextBox Text="{Binding FirstName,Mode=TwoWay}"></TextBox>
+                <TextBlock Text="Last Name" Margin="15,0,0,0"></TextBlock>
+                <TextBox Text="{Binding LastName,Mode=TwoWay}"></TextBox>
+                <TextBlock Text="Password" Margin="15,0,0,0"></TextBlock>
+                <TextBox Text="{Binding Password,Mode=TwoWay}"></TextBox>
+                <TextBlock Text="Email" Margin="15,0,0,0"></TextBlock>
+                <TextBox Text="{Binding Email,Mode=TwoWay}"></TextBox>
+                <TextBlock Text="Address" Margin="15,0,0,0"></TextBlock>
+                <TextBox Text="{Binding Address,Mode=TwoWay}"></TextBox>
+            </StackPanel>
         </Grid>
     </Grid>
 

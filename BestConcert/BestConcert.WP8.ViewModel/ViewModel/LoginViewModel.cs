@@ -79,23 +79,30 @@ namespace BestConcert.WP8.ViewModel.ViewModel
         }
         
         #endregion
+
+        #region Command
+        public ICommand LoginCommand { get; set; }
+        public ICommand SignUpCommand { get; set; }
+        #endregion 
         private INavigationService nav;
         public LoginViewModel(INavigationService n)
         {
             nav = n;
             LoginCommand = new RelayCommand(LoginAction);
+            SignUpCommand = new RelayCommand(signUpAction);
             LoginEmail = "aurelien@nablaweb.fr";
             VerifVisibility = Visibility.Collapsed;
             ProgressVisibility = Visibility.Collapsed;
             ProgressActive = false;
         }
 
+        private void signUpAction()
+        {
+            nav.NavigateTo(new Uri("/View/SaveUserPage.xaml", UriKind.RelativeOrAbsolute));
+        }
 
 
-        #region Commands
-
-        public ICommand LoginCommand { get; set; }
-
+        
         public async void LoginAction()
         {
             if (!String.IsNullOrEmpty(LoginEmail) && !String.IsNullOrEmpty(LoginPassword))
@@ -133,7 +140,6 @@ namespace BestConcert.WP8.ViewModel.ViewModel
 
            
         }
-        #endregion
 
         #region Business methods
 
