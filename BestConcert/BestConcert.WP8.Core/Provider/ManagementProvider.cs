@@ -19,7 +19,7 @@ namespace BestConcert.WP8.Core.Provider
         /// <param name="username"></param>
         /// <param name="password"></param>
         /// <returns>Boolean</returns>
-        public static async Task<bool> SignInAsync (string username, string password)
+        public static async Task<bool> SignInAsync(string username, string password)
         {
             try
             {
@@ -83,7 +83,8 @@ namespace BestConcert.WP8.Core.Provider
             }
         }
         #endregion
-        
+
+
 
 
 

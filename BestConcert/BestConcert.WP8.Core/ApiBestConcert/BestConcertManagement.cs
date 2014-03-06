@@ -40,7 +40,6 @@ namespace BestConcert.WP8.Core.ApiBestConcert
         {
             try
             {
-
                 var requestUrl = string.Format(urlBestConcert + "/user/getAll");
                 var req = await WebRequest.Create(requestUrl, "GET", false);
 
@@ -48,7 +47,6 @@ namespace BestConcert.WP8.Core.ApiBestConcert
             }
             catch (Exception ex)
             {
-
                 throw new Exception(ex.Message);
             }
         }

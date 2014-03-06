@@ -99,29 +99,29 @@ namespace BestConcert.WP8.ViewModel.ViewModel
         {
             if (!String.IsNullOrEmpty(LoginEmail) && !String.IsNullOrEmpty(LoginPassword))
             {
-                ProgressVisibility = Visibility.Visible;
-                ProgressActive = true;
-                string passwordSha = "";
-                passwordSha = CalculateSha1(LoginPassword);
-                var loginParameters = String.Format(@"{0}/api?login={1}&password={2}&token={3}", loginUrl, LoginEmail,
-                    passwordSha, loginToken);
+                //ProgressVisibility = Visibility.Visible;
+                //ProgressActive = true;
+                //string passwordSha = "";
+                //passwordSha = CalculateSha1(LoginPassword);
+                //var loginParameters = String.Format(@"{0}/api?login={1}&password={2}&token={3}", loginUrl, LoginEmail,
+                //    passwordSha, loginToken);
 
-                var connection = await Query.Connection(loginParameters);
-                UserModel secour = new UserModel(connection.item.nom, connection.item.prenom, connection.item.tel, connection.item.adresse, connection.item.email, DateTime.Parse(connection.item.date_naiss), 2);
-                if (connection.success == true)
-                {
-                    VerifVisibility = Visibility.Collapsed;
+                //var connection = await Query.Connection(loginParameters);
+                //UserModel secour = new UserModel(connection.item.nom, connection.item.prenom, connection.item.tel, connection.item.adresse, connection.item.email, DateTime.Parse(connection.item.date_naiss), 2);
+                //if (connection.success == true)
+                //{
+                //    VerifVisibility = Visibility.Collapsed;
 
-                    nav.NavigateTo(new Uri("/View/MainPage.xaml", UriKind.RelativeOrAbsolute));
-                    ProgressActive = false;
-                    ProgressVisibility = Visibility.Collapsed;
-                }
-                else
-                {
-                    ProgressVisibility = Visibility.Collapsed;
-                    ProgressActive = false;
-                    VerifVisibility = Visibility.Visible;
-                }
+                //    nav.NavigateTo(new Uri("/View/MainPage.xaml", UriKind.RelativeOrAbsolute));
+                //    ProgressActive = false;
+                //    ProgressVisibility = Visibility.Collapsed;
+                //}
+                //else
+                //{
+                //    ProgressVisibility = Visibility.Collapsed;
+                //    ProgressActive = false;
+                //    VerifVisibility = Visibility.Visible;
+                //}
             }
             else
             {

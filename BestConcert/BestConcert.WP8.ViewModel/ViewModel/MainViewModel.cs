@@ -35,7 +35,11 @@ namespace BestConcert.WP8.ViewModel.ViewModel
         public ObservableCollection<ConcertModel> ConcertsListFromWeb
         {
             get { return _concertsListFromWeb; }
-            set { _concertsListFromWeb = value; RaisePropertyChanged(() => ConcertsListFromWeb); }
+            set
+            {
+                _concertsListFromWeb = value;
+                RaisePropertyChanged(() => ConcertsListFromWeb);
+            }
         }
 
         private ObservableCollection<ConcertModel> _concertsListByDate;
@@ -43,7 +47,11 @@ namespace BestConcert.WP8.ViewModel.ViewModel
         public ObservableCollection<ConcertModel> ConcertsListByDate
         {
             get { return _concertsListByDate; }
-            set { _concertsListByDate = value; RaisePropertyChanged(() => ConcertsListByDate); }
+            set
+            {
+                _concertsListByDate = value;
+                RaisePropertyChanged(() => ConcertsListByDate);
+            }
         }
 
         private ObservableCollection<ConcertModel> _concertsListByKind;
@@ -51,7 +59,11 @@ namespace BestConcert.WP8.ViewModel.ViewModel
         public ObservableCollection<ConcertModel> ConcertsListByKind
         {
             get { return _concertsListByKind; }
-            set { _concertsListByKind = value; RaisePropertyChanged(() => ConcertsListByKind); }
+            set
+            {
+                _concertsListByKind = value;
+                RaisePropertyChanged(() => ConcertsListByKind);
+            }
         }
 
 
@@ -60,15 +72,23 @@ namespace BestConcert.WP8.ViewModel.ViewModel
         public ObservableCollection<ConcertModel> ConcertsListByArtist
         {
             get { return _concertsListByArtist; }
-            set { _concertsListByArtist = value; RaisePropertyChanged(() => ConcertsListByArtist); }
+            set
+            {
+                _concertsListByArtist = value;
+                RaisePropertyChanged(() => ConcertsListByArtist);
+            }
         }
 
-        private ObservableCollection<string> _postesName;
+        private ObservableCollection<string> _concertArtist;
 
-        public ObservableCollection<string> PostesName
+        public ObservableCollection<string> ConcertArtist
         {
-            get { return _postesName; }
-            set { _postesName = value; RaisePropertyChanged(() => PostesName); }
+            get { return _concertArtist; }
+            set
+            {
+                _concertArtist = value;
+                RaisePropertyChanged(() => ConcertArtist);
+            }
         }
 
         private string _selectedSearch;
@@ -83,6 +103,7 @@ namespace BestConcert.WP8.ViewModel.ViewModel
                 setSearchPoste(SearchValue);
             }
         }
+
         private string _searchValue;
 
         public string SearchValue
@@ -113,13 +134,16 @@ namespace BestConcert.WP8.ViewModel.ViewModel
             switch (SelectedIndex)
             {
                 case 0:
-                    PostesName = new ObservableCollection<string>(ConcertsListByDate.Select(concert => concert.Artist).ToList());
+                    ConcertArtist =
+                        new ObservableCollection<string>(ConcertsListByDate.Select(concert => concert.Artist).ToList());
                     break;
                 case 1:
-                    PostesName = new ObservableCollection<string>(ConcertsListByKind.Select(concert => concert.Artist).ToList());
+                    ConcertArtist =
+                        new ObservableCollection<string>(ConcertsListByKind.Select(concert => concert.Artist).ToList());
                     break;
                 case 2:
-                    PostesName = new ObservableCollection<string>(ConcertsListByArtist.Select(concert => concert.Artist).ToList());
+                    ConcertArtist =
+                        new ObservableCollection<string>(ConcertsListByArtist.Select(concert => concert.Artist).ToList());
                     break;
             }
         }
@@ -127,11 +151,14 @@ namespace BestConcert.WP8.ViewModel.ViewModel
         #endregion
 
         #region Command
+
         public RelayCommand LoadPage { get; set; }
         public RelayCommand NavToSecoursList { get; set; }
+
         #endregion
 
         private INavigationService nav;
+
         public MainViewModel(INavigationService n)
         {
             nav = n;
@@ -148,38 +175,25 @@ namespace BestConcert.WP8.ViewModel.ViewModel
 
         private void navtoSL()
         {
-            nav.NavigateTo();
+            //nav.NavigateTo();
         }
 
         private async void InitSecouriste()
         {
-            var secouristeWeb = LocalQuery.GetCurrentSecouriste();
-            secouriste = secouristeWeb;
+            ////var secouristeWeb = await ManagementProvider.GetCurrentSecouriste();
+            //secouriste = secouristeWeb;
         }
 
         public async void initList()
         {
             ConcertsListFromWeb = new ObservableCollection<ConcertModel>();
-            var posteList = await Query<>.GetPoste();
-            if (posteList != null)
+            var concertList = await ManagementProvider.GetAllUserAsync();
+            if (concertList != null)
             {
-                foreach (var item in posteList)
-                {
-                    ConcertsListFromWeb.Add(
-                        new ConcertModel()
-                        {
-                            Date = Convert.ToDateTime(item.Date_poste),
-                            Name = item.State,
-                            ID = item.Id,
-                            Intitule = item.Intitule,
-                            Lieu = item.Lieu,
-                            HeureDebut = Convert.ToDateTime(item.Heure_debut),
-                            HeureFin = Convert.ToDateTime(item.Heure_fin),
-                            SecouristeList = new List<Secouriste>()
-                        });
-                }
-                PostesName = new ObservableCollection<string>(PosteDeSecoursWeb.Select(poste => poste.Intitule).ToList());
-                setPostesListe();
+                //ConcertsListFromWeb = new ObservableCollection<ConcertModel>(concertList.Concert);
+                //ConcertArtist =
+                //    new ObservableCollection<string>(ConcertsListFromWeb.Select(poste => poste.Artist).ToList());
+                //setPostesListe();
             }
         }
 
@@ -191,20 +205,11 @@ namespace BestConcert.WP8.ViewModel.ViewModel
 
         private void setPostesListe()
         {
-            secouriste = new Secouriste("BURRELL", "Sarah", "05.55.51.22.56", "sarah@gmail.com");
-            PosteDeSecours = new ObservableCollection<PosteDeSecours>();
-            PosteDeSecours = PosteDeSecoursWeb;
+            //secouriste = new Secouriste("BURRELL", "Sarah", "05.55.51.22.56", "sarah@gmail.com");
+            ConcertsListByDate = new ObservableCollection<ConcertModel>();
+            ConcertsListByDate = ConcertsListFromWeb;
 
-            MyPostes = new ObservableCollection<PosteDeSecours>();
-            foreach (var pos in from pos in PosteDeSecours from sec in pos.SecouristeList where sec.Prenom == secouriste.Prenom && sec.Nom == secouriste.Nom select pos)
-            {
-                MyPostes.Add(pos);
-            }
-            //MyPostes = new ObservableCollection<PosteDeSecours>(PosteDeSecours.Where(poste => poste.SecouristeList.Contains(secouriste)).ToList());
-
-
-            PostesEnAttente = new ObservableCollection<PosteDeSecours>();
-            PostesEnAttente = new ObservableCollection<PosteDeSecours>(PosteDeSecours.Where(poste => poste.Etat == "En attente").ToList());
+            ConcertsListByKind = new ObservableCollection<ConcertModel>();
         }
 
         private void loadPage()
@@ -218,14 +223,21 @@ namespace BestConcert.WP8.ViewModel.ViewModel
             switch (SelectedIndex)
             {
                 case 0:
-                    ConcertsListByDate = new ObservableCollection<ConcertModel>(ConcertsListByDate.Where(poste => poste.Artist == name).ToList());
+                    ConcertsListByDate =
+                        new ObservableCollection<ConcertModel>(
+                            ConcertsListByDate.Where(poste => poste.Artist == name).ToList());
                     break;
                 case 1:
-                    ConcertsListByKind = new ObservableCollection<ConcertModel>(ConcertsListByKind.Where(poste => poste.Artist == name).ToList());
+                    ConcertsListByKind =
+                        new ObservableCollection<ConcertModel>(
+                            ConcertsListByKind.Where(poste => poste.Artist == name).ToList());
                     break;
                 case 2:
-                    ConcertsListByArtist = new ObservableCollection<ConcertModel>(ConcertsListByArtist.Where(poste => poste.Artist == name).ToList());
+                    ConcertsListByArtist =
+                        new ObservableCollection<ConcertModel>(
+                            ConcertsListByArtist.Where(poste => poste.Artist == name).ToList());
                     break;
             }
+        }
     }
 }

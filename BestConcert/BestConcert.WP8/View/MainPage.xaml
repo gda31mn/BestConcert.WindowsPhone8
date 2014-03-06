@@ -62,7 +62,7 @@
                             </StackPanel>
                             <Rectangle Fill="#FF545554" Grid.Column="2" Margin="0" Grid.Row="1" Width="30" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.RowSpan="2">
                                 <Rectangle.OpacityMask>
-                                    <ImageBrush Stretch="Fill" ImageSource="{Binding Etat, Converter={StaticResource StateToImageSourceConverter}}"/>
+                                    <ImageBrush Stretch="Fill" />
                                 </Rectangle.OpacityMask>
                             </Rectangle>
                         </Grid>
@@ -320,7 +320,7 @@
         </Style>
     </phone:PhoneApplicationPage.Resources>
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" d:DataContext="{d:DesignData ../SampleData/MainDataSample/MainDataSample.xaml}">
+    <Grid x:Name="LayoutRoot">
         <i:Interaction.Behaviors>
             <behaviors:ApplicationBarBehavior IsVisible="True">
                 <behaviors:ApplicationBarIconButton
@@ -419,7 +419,7 @@
             <phone:Pivot x:Name="ContentPivot"
                             Grid.Row="2"
                             Margin="0,0,0,0"
-                         d:DataContext="{d:DesignData ../SampleData/MainDataSample/MainDataSample.xaml}" Style="{StaticResource PivotStyle}" ItemContainerStyle="{StaticResource PivotItemStyle1}" SelectedIndex="{Binding SelectedIndex,Mode=TwoWay}">
+                        Style="{StaticResource PivotStyle}" ItemContainerStyle="{StaticResource PivotItemStyle1}" SelectedIndex="{Binding SelectedIndex,Mode=TwoWay}">
                 <phone:PivotItem Margin="12,0">
                     <ListBox ItemsSource="{Binding PosteDeSecours}" ItemTemplate="{StaticResource ItemPostTemplate}"/>
                 </phone:PivotItem>

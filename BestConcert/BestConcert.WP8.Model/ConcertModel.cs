@@ -12,12 +12,12 @@ namespace BestConcert.WP8.Model
         public string Artist { get; set; }
         public string Genre { get; set; }
         public float Price { get; set; }
-        public DateTime Date { get; set; }
+        public object Date { get; set; }
         public string Location { get; set; }
     }
 
     public class ConcertList
     {
-        public ConcertModel[] Concert { get; set; }
+        public List<ConcertModel> Concert { get; set; }
     }
 }
