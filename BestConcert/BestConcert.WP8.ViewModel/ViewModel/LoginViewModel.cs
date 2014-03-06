@@ -3,6 +3,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Windows;
 using System.Windows.Input;
+using BestConcert.WP8.Core.Provider;
 using BestConcert.WP8.Model;
 using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight;
@@ -99,29 +100,28 @@ namespace BestConcert.WP8.ViewModel.ViewModel
         {
             if (!String.IsNullOrEmpty(LoginEmail) && !String.IsNullOrEmpty(LoginPassword))
             {
-                //ProgressVisibility = Visibility.Visible;
-                //ProgressActive = true;
-                //string passwordSha = "";
-                //passwordSha = CalculateSha1(LoginPassword);
-                //var loginParameters = String.Format(@"{0}/api?login={1}&password={2}&token={3}", loginUrl, LoginEmail,
-                //    passwordSha, loginToken);
+                ProgressVisibility = Visibility.Visible;
+                ProgressActive = true;
+                string passwordSha = "";
+                passwordSha = CalculateSha1(LoginPassword);
 
-                //var connection = await Query.Connection(loginParameters);
-                //UserModel secour = new UserModel(connection.item.nom, connection.item.prenom, connection.item.tel, connection.item.adresse, connection.item.email, DateTime.Parse(connection.item.date_naiss), 2);
-                //if (connection.success == true)
-                //{
-                //    VerifVisibility = Visibility.Collapsed;
 
-                //    nav.NavigateTo(new Uri("/View/MainPage.xaml", UriKind.RelativeOrAbsolute));
-                //    ProgressActive = false;
-                //    ProgressVisibility = Visibility.Collapsed;
-                //}
-                //else
-                //{
-                //    ProgressVisibility = Visibility.Collapsed;
-                //    ProgressActive = false;
-                //    VerifVisibility = Visibility.Visible;
-                //}
+                object[] connection = await ManagementProvider.SignInAsync(LoginEmail, passwordSha);
+                connection[0] = true;
+                if ((bool)connection[0])
+                {
+                    VerifVisibility = Visibility.Collapsed;
+
+                    nav.NavigateTo(new Uri("/View/MainPage.xaml", UriKind.RelativeOrAbsolute));
+                    ProgressActive = false;
+                    ProgressVisibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    ProgressVisibility = Visibility.Collapsed;
+                    ProgressActive = false;
+                    VerifVisibility = Visibility.Visible;
+                }
             }
             else
             {
@@ -130,12 +130,6 @@ namespace BestConcert.WP8.ViewModel.ViewModel
                 VerifVisibility = Visibility.Visible;
             }
 
-            
-            /*
-             * Result =>
-             * Current : 88JQMniAogh+dzZBabAbuzOqpM0=
-             * Expected : 9cf95dacd226dcf43da376cdb6cbba7035218921
-             * */
 
            
         }

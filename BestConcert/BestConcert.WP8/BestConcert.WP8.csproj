@@ -111,6 +111,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="View\SaveUserPage.xaml.cs">
+      <DependentUpon>SaveUserPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\UserControl\SplitPanel.cs" />
     <Compile Include="View\ValidationPage.xaml.cs">
       <DependentUpon>ValidationPage.xaml</DependentUpon>
@@ -137,6 +140,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\SaveUserPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ValidationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -154,7 +161,10 @@
     <Content Include="Assets\ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Image\lock.png" />
+    <Content Include="Assets\Image\concert.png" />
     <Content Include="Assets\Image\cancel.png" />
+    <Content Include="Assets\Image\mail.png" />
     <Content Include="Assets\Image\search.png" />
     <Content Include="Assets\Tiles\FlipCycleTileLarge.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
