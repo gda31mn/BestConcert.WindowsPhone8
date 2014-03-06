@@ -15,9 +15,4 @@ namespace BestConcert.WP8.Model
         public DateTime Date { get; set; }
         public string Location { get; set; }
     }
-
-    public class ConcertList
-    {
-        public ConcertModel[] Concert { get; set; }
-    }
 }

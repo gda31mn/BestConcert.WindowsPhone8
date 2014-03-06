@@ -19,7 +19,7 @@ namespace BestConcert.WP8.Core.Provider
         /// <param name="username"></param>
         /// <param name="password"></param>
         /// <returns>Boolean</returns>
-        public static async Task<bool> SignInAsync (string username, string password)
+        public static async Task<string> SignInAsync (string username, string password)
         {
             try
             {
@@ -34,12 +34,12 @@ namespace BestConcert.WP8.Core.Provider
             }
         }
 
-        public static async Task<UserList> GetAllUserAsync()
+        public static async Task<List<UserModel>> GetAllUserAsync()
         {
             try
             {
                 var req = await BestConcertManagement.GetAllUserAsync();
-                var result = JsonConvert.DeserializeObject<UserList>(req);
+                var result = JsonConvert.DeserializeObject<List<UserModel>>(req);
 
                 return result;
             }
@@ -68,12 +68,12 @@ namespace BestConcert.WP8.Core.Provider
 
         #region Concert
 
-        public static async Task<ConcertList> GetAllConcertAsync()
+        public static async Task<List<ConcertModel>> GetAllConcertAsync()
         {
             try
             {
                 var req = await BestConcertManagement.GetAllConcertAsync();
-                var result = JsonConvert.DeserializeObject<ConcertList>(req);
+                var result = JsonConvert.DeserializeObject<List<ConcertModel>>(req);
 
                 return result;
             }

@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace BestConcert.WP8.Model
 {
-
     public class UserModel
     {
         public int Id { get; set; }
@@ -16,10 +15,5 @@ namespace BestConcert.WP8.Model
         public string Password { get; set; }
         public string Address { get; set; }
         public object Orders { get; set; }
-    }
-
-    public class UserList
-    {
-        public UserModel[] User { get; set; }
     }
 }
