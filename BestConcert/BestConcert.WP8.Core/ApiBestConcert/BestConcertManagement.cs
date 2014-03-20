@@ -271,7 +271,7 @@ namespace BestConcert.WP8.Core.ApiBestConcert
         {
             try
             {
-                if (!String.IsNullOrEmpty(token) && !String.IsNullOrEmpty(concertId) && !String.IsNullOrEmpty(quantity))
+                if (String.IsNullOrEmpty(token) || String.IsNullOrEmpty(concertId) || String.IsNullOrEmpty(quantity))
                     throw new Exception("Invalid Parameter !");
 
                 var requestUrl = string.Format(UrlBestConcert + "/order/addorderitem?token={0}&concerId={1}&quantity={2}", token, concertId, quantity);
