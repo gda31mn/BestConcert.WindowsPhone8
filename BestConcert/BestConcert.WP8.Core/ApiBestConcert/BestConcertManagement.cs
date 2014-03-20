@@ -62,7 +62,7 @@ namespace BestConcert.WP8.Core.ApiBestConcert
         {
             try
             {
-                if (!String.IsNullOrEmpty(firstName) && !String.IsNullOrEmpty(lastName) && !String.IsNullOrEmpty(password) && !String.IsNullOrEmpty(email) && !String.IsNullOrEmpty(address))
+                if (String.IsNullOrEmpty(firstName) && String.IsNullOrEmpty(lastName) && String.IsNullOrEmpty(password) && String.IsNullOrEmpty(email) && String.IsNullOrEmpty(address))
                     throw new Exception("Invalide Info !");
 
                 var requestUrl = string.Format(UrlBestConcert + "/user/adduser?firstName={0}&lastName={1}&password={2}&email={3}&address={4}", firstName, lastName, password, email, address);
@@ -80,7 +80,7 @@ namespace BestConcert.WP8.Core.ApiBestConcert
         {
             try
             {
-                if (!String.IsNullOrEmpty(token))
+                if (String.IsNullOrEmpty(token))
                     throw new Exception("Invalide Info !");
 
                 var requestUrl = string.Format(UrlBestConcert + "/user/getuser?token={0}", token);
@@ -100,7 +100,7 @@ namespace BestConcert.WP8.Core.ApiBestConcert
         {
             try
             {
-                if (!String.IsNullOrEmpty(token) && !String.IsNullOrEmpty(firstName) && !String.IsNullOrEmpty(lastName) && !String.IsNullOrEmpty(password) && !String.IsNullOrEmpty(email) && !String.IsNullOrEmpty(address))
+                if (String.IsNullOrEmpty(token) && String.IsNullOrEmpty(firstName) && String.IsNullOrEmpty(lastName) && String.IsNullOrEmpty(password) && String.IsNullOrEmpty(email) && String.IsNullOrEmpty(address))
                     throw new Exception("Invalide Info !");
 
                 var requestUrl = string.Format(UrlBestConcert + "/user/setuser?userid={0}&firstName={1}&lastName={2}&password={3}&email={4}&address={5}", token, firstName, lastName, password, email, address);
@@ -118,7 +118,7 @@ namespace BestConcert.WP8.Core.ApiBestConcert
         {
             try
             {
-                if (!String.IsNullOrEmpty(token) && !String.IsNullOrEmpty(password))
+                if (String.IsNullOrEmpty(token) && String.IsNullOrEmpty(password))
                     throw new Exception("Invalide Info !");
 
                 var requestUrl = string.Format(UrlBestConcert + "/user/setuserpassword?token={0}&password={1}", token, password);
@@ -157,7 +157,7 @@ namespace BestConcert.WP8.Core.ApiBestConcert
         {
             try
             {
-                if (!String.IsNullOrEmpty(id))
+                if (String.IsNullOrEmpty(id))
                     throw new Exception("Invalid Parameter !");
 
                 var requestUrl = string.Format(UrlBestConcert + "/concert/getbyid?id={0}", id);
@@ -176,7 +176,7 @@ namespace BestConcert.WP8.Core.ApiBestConcert
         {
             try
             {
-                if (!String.IsNullOrEmpty(genre))
+                if (String.IsNullOrEmpty(genre))
                     throw new Exception("Invalid Parameter !");
 
                 var requestUrl = string.Format(UrlBestConcert + "/concert/getbygenre?genre={0}", genre);
@@ -195,7 +195,7 @@ namespace BestConcert.WP8.Core.ApiBestConcert
         {
             try
             {
-                if (!String.IsNullOrEmpty(artist))
+                if (String.IsNullOrEmpty(artist))
                     throw new Exception("Invalid Parameter !");
 
                 var requestUrl = string.Format(UrlBestConcert + "/concert/getbyartist?genre={0}", artist);
@@ -235,7 +235,7 @@ namespace BestConcert.WP8.Core.ApiBestConcert
         {
             try
             {
-                if (!String.IsNullOrEmpty(token))
+                if (String.IsNullOrEmpty(token))
                     throw new Exception("Invalid Parameter !");
 
                 var requestUrl = string.Format(UrlBestConcert + "/order/getcurrentorderfromuserid?token={0}", token);
@@ -253,7 +253,7 @@ namespace BestConcert.WP8.Core.ApiBestConcert
         {
             try
             {
-                if (!String.IsNullOrEmpty(token))
+                if (String.IsNullOrEmpty(token))
                     throw new Exception("Invalid Parameter !");
 
                 var requestUrl = string.Format(UrlBestConcert + "/order/gethistoryordersfromuserid?token={0}", token);
@@ -290,7 +290,7 @@ namespace BestConcert.WP8.Core.ApiBestConcert
         {
             try
             {
-                if (!String.IsNullOrEmpty(orderId))
+                if (String.IsNullOrEmpty(orderId))
                     throw new Exception("Invalid Parameter !");
 
                 var requestUrl = string.Format(UrlBestConcert + "/order/payeorder?orderId={0}", orderId);
