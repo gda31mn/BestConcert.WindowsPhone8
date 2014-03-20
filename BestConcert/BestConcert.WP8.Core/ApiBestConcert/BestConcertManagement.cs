@@ -23,7 +23,7 @@ namespace BestConcert.WP8.Core.ApiBestConcert
                 var requestUrl = string.Format(UrlBestConcert + "/user/signin?email={0}&password={1}", username, password);
                 var req = await WebRequest.Create(requestUrl, "GET", false);
 
-                if (req == "-1")
+                if (req == null || req == "-1")
                 {
                     result[0] = false;
                     result[1] = null;

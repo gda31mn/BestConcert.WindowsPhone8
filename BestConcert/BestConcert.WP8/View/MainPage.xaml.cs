@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.ComponentModel;
+using System.Windows;
 using BestConcert.WP8.ViewModel.ViewModel;
 using Microsoft.Phone.Controls;
 
@@ -19,6 +20,15 @@ namespace BestConcert.WP8.View
         {
             this.autoCompleteBox1.Text = "";
             (DataContext as MainViewModel).initList();
+        }
+
+        protected override void OnBackKeyPress(CancelEventArgs e)
+        {
+            if (MessageBox.Show("Are you sure you want to exit?", "Exit?",
+                                    MessageBoxButton.OKCancel) != MessageBoxResult.OK)
+            {
+                e.Cancel = true;
+            }
         }
     }
 }

@@ -92,6 +92,7 @@ namespace BestConcert.WP8.ViewModel.ViewModel
             if (IsValid(_email))
             {
                 await ManagementProvider.AddUserAsync(FirstName, LastName, CalculateSha1(Password), Email, Address);
+                nav.NavigateTo(new Uri("Mainpage.xaml",UriKind.RelativeOrAbsolute));
             }
             
         }
