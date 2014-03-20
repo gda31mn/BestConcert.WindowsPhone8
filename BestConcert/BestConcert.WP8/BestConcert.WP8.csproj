@@ -25,6 +25,7 @@
     <ValidateXaml>true</ValidateXaml>
     <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <ExpressionBlendVersion>12.0.41212.0</ExpressionBlendVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -96,6 +97,9 @@
     <Compile Include="Converter\DebugConverter.cs" />
     <Compile Include="Converter\PriceToEuroConverter.cs" />
     <Compile Include="LocalizedStrings.cs" />
+    <Compile Include="Resources\BascketUserControl.xaml.cs">
+      <DependentUpon>BascketUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Tools\KingOfConcertGroup.cs" />
     <Compile Include="View\DetailPage.xaml.cs">
       <DependentUpon>DetailPage.xaml</DependentUpon>
@@ -125,6 +129,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="Resources\BascketUserControl.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\DetailPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -222,6 +230,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BestConcert.WP8.Model\BestConcert.WP8.Model.csproj">
+      <Project>{A251C845-D5B4-4AE1-9A76-103A4B13F857}</Project>
+      <Name>BestConcert.WP8.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BestConcert.WP8.ViewModel\BestConcert.WP8.ViewModel.csproj">
       <Project>{B14040E4-45FC-4403-A793-EE436815BDC4}</Project>
       <Name>BestConcert.WP8.ViewModel</Name>
