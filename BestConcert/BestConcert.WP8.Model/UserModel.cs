@@ -14,6 +14,7 @@ namespace BestConcert.WP8.Model
         public string Email { get; set; }
         public string Password { get; set; }
         public string Address { get; set; }
-        public object Orders { get; set; }
+        public string Token { get; set; }
+        public List<Order> Orders { get; set; }
     }
 }
