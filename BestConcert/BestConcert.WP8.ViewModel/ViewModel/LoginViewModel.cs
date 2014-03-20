@@ -147,7 +147,7 @@ namespace BestConcert.WP8.ViewModel.ViewModel
 
         private Task<List<Order>> getUserOrders()
         {
-            return ManagementProvider.GetAllOrdersFromUserIdAsync(Singleton.UserDataSingleton.Instance.User.Token);
+            return ManagementProvider.GetAllOrdersFromUserTokenAsync(Singleton.UserDataSingleton.Instance.User.Token);
         }
 
         #region Business methods

@@ -183,11 +183,11 @@ namespace BestConcert.WP8.Core.Provider
 
         #region Order
 
-        public static async Task<List<Order>> GetAllOrdersFromUserIdAsync(string token)
+        public static async Task<List<Order>> GetAllOrdersFromUserTokenAsync(string token)
         {
             try
             {
-                var req = await BestConcertManagement.GetAllOrdersFromUserIdAsync(token);
+                var req = await BestConcertManagement.GetAllOrdersFromUserTokenAsync(token);
                 var result = JsonConvert.DeserializeObject<List<Order>>(req);
 
                 return result;

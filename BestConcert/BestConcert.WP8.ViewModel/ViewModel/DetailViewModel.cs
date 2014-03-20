@@ -57,10 +57,12 @@ namespace BestConcert.WP8.ViewModel.ViewModel
 
         private async void basket()
         {
-            foreach (var orderItem in
-                (await ManagementProvider.GetCurrentOrderFromUserIdAsync(Singleton.UserDataSingleton.Instance.User.Token)).OrderItems)
+            foreach (var order in Singleton.UserDataSingleton.Instance.User.Orders)
             {
-                Debug.WriteLine(orderItem.Concert);
+                foreach (var orderItem in order.OrderItems)
+                {
+                    Debug.WriteLine(orderItem.Concert.Artist);
+                }
             }
         }
 

@@ -148,24 +148,6 @@ namespace BestConcert.WP8.ViewModel.ViewModel
             }
         }
 
-        private void setsearchList(int value)
-        {
-            switch (SelectedIndex)
-            {
-                case 0:
-                    ConcertArtist =
-                        new ObservableCollection<string>(ConcertsListByDate.Select(concert => concert.Artist).ToList());
-                    break;
-                //case 1:
-                //    ConcertArtist =
-                //        new ObservableCollection<string>(ConcertsListByKind.Select(concert => concert.Artist).ToList());
-                //    break;
-                //case 2:
-                //    ConcertArtist =
-                //        new ObservableCollection<string>(ConcertsListByArtist.Select(concert => concert.Artist).ToList());
-                //    break;
-            }
-        }
 
         #endregion
 
@@ -218,6 +200,7 @@ namespace BestConcert.WP8.ViewModel.ViewModel
             {
                 ConcertsListFromWeb = new ObservableCollection<ConcertModel>(concertList);
                 setPostesListe(false);
+                setsearchList(0);
             }
             else
             {
@@ -273,14 +256,47 @@ namespace BestConcert.WP8.ViewModel.ViewModel
                             ConcertsListByDate.Where(poste => poste.Artist == name).ToList());
                     break;
                 case 1:
-                    ConcertsListByKind =
-                        new List<KingOfConcertGroup<ConcertModel>>(
-                            ConcertsListByKind.Where(poste => poste.Key == name).ToList());
+                    var byKind = ConcertsListFromWeb.OrderBy(concert => concert.Genre).Where(poste => poste.Artist == name).ToList();
+                
+                    ConcertsListByKind = KingOfConcertGroup<ConcertModel>.CreateGroups(byKind,
+               System.Threading.Thread.CurrentThread.CurrentUICulture,
+               (ConcertModel s) => { return s.Genre; }, true);
                     break;
                 case 2:
-                    ConcertsListByArtist =
-                        new List<KingOfConcertGroup<ConcertModel>>(
-                            ConcertsListByArtist.Where(poste => poste.Key == name).ToList());
+                    var byArtist = ConcertsListFromWeb.OrderBy(concert => concert.Artist).Where(poste => poste.Artist == name).ToList();
+                    ConcertsListByKind = KingOfConcertGroup<ConcertModel>.CreateGroups(byArtist,
+               System.Threading.Thread.CurrentThread.CurrentUICulture,
+               (ConcertModel s) => { return s.Genre; }, true);
+                    break;
+            }
+        }
+
+        private void setsearchList(int value)
+        {
+            switch (SelectedIndex)
+            {
+                case 0:
+                    ConcertArtist =
+                        new ObservableCollection<string>(ConcertsListByDate.Select(concert => concert.Artist).ToList());
+                    break;
+                case 1:
+                    ConcertArtist = new ObservableCollection<string>();
+                    foreach (var list in ConcertsListByKind)
+                    {
+                        foreach (var concert in list)
+                        {
+                            ConcertArtist.Add(concert.Artist);
+                        }
+                    } break;
+                case 2:
+                    ConcertArtist = new ObservableCollection<string>();
+                    foreach (var list in ConcertsListByArtist)
+                    {
+                        foreach (var concert in list)
+                        {
+                            ConcertArtist.Add(concert.Artist);
+                        }
+                    } break;
                     break;
             }
         }

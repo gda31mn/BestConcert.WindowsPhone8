@@ -213,14 +213,14 @@ namespace BestConcert.WP8.Core.ApiBestConcert
 
         #region Order
 
-        internal static async Task<string> GetAllOrdersFromUserIdAsync(string token)
+        internal static async Task<string> GetAllOrdersFromUserTokenAsync(string token)
         {
             try
             {
                 if (String.IsNullOrEmpty(token))
                     throw new Exception("Invalid Parameter !");
 
-                var requestUrl = string.Format(UrlBestConcert + "/order/getallordersfromuserid?token={0}", token);
+                var requestUrl = string.Format(UrlBestConcert + "/order/getallordersfromusertoken?token={0}", token);
                 var req = await WebRequest.Create(requestUrl, "GET", false);
 
                 return req;
