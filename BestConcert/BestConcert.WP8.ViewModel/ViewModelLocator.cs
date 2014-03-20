@@ -46,6 +46,8 @@ namespace BestConcert.WP8.ViewModel
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<LoginViewModel>();
             SimpleIoc.Default.Register<SaveUserViewModel>();
+            SimpleIoc.Default.Register<DetailViewModel>();
+            SimpleIoc.Default.Register<ValidationViewModel>();
         }
 
         public MainViewModel Main
@@ -69,6 +71,22 @@ namespace BestConcert.WP8.ViewModel
             get
             {
                 return ServiceLocator.Current.GetInstance<SaveUserViewModel>();
+            }
+        }
+
+        public DetailViewModel Detail
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<DetailViewModel>();
+            }
+        }
+
+        public ValidationViewModel Validation
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<ValidationViewModel>();
             }
         }
         

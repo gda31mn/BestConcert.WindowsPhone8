@@ -90,7 +90,8 @@ namespace BestConcert.WP8.ViewModel.ViewModel
             nav = n;
             LoginCommand = new RelayCommand(LoginAction);
             SignUpCommand = new RelayCommand(signUpAction);
-            LoginEmail = "aurelien@nablaweb.fr";
+            LoginEmail = "tata@tata.fr";
+            LoginPassword = "tototata";
             VerifVisibility = Visibility.Collapsed;
             ProgressVisibility = Visibility.Collapsed;
             ProgressActive = false;
@@ -114,7 +115,6 @@ namespace BestConcert.WP8.ViewModel.ViewModel
 
 
                 object[] connection = await ManagementProvider.SignInAsync(LoginEmail, passwordSha);
-                connection[0] = true;
                 if ((bool)connection[0])
                 {
                     VerifVisibility = Visibility.Collapsed;

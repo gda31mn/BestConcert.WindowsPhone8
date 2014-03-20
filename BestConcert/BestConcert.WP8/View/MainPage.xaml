@@ -348,6 +348,7 @@
 						IconUri="/Assets/phone.png"
 						Text="Secouristes" Command="{Binding NavToSecoursList}" />
                 <behaviors:ApplicationBarBehavior.MenuItems>
+                    <behaviors:ApplicationBarMenuItem Text="Logout" Command="{Binding Logout}"></behaviors:ApplicationBarMenuItem>
                 </behaviors:ApplicationBarBehavior.MenuItems>
 
             </behaviors:ApplicationBarBehavior>
@@ -441,17 +442,17 @@
                             Margin="0,0,0,0"
                         Style="{StaticResource PivotStyle}" ItemContainerStyle="{StaticResource PivotItemStyle1}" SelectedIndex="{Binding SelectedIndex,Mode=TwoWay}">
                 <phone:PivotItem Margin="12,0">
-                    <ListBox ItemsSource="{Binding ConcertsListByDate}" ItemTemplate="{StaticResource ConcertItemTemplate}"/>
+                    <ListBox ItemsSource="{Binding ConcertsListByDate}" ItemTemplate="{StaticResource ConcertItemTemplate}" SelectedItem="{Binding SelectedConcert,Mode=TwoWay}"/>
                 </phone:PivotItem>
                 <phone:PivotItem>
                     <phone:LongListSelector
                     x:Name="concertByKind" JumpListStyle="{StaticResource AddrBookJumpListStyle}" Background="Transparent" LayoutMode="List" IsGroupingEnabled="true"
-  HideEmptyGroups ="true" GroupHeaderTemplate="{StaticResource AddrBookGroupHeaderTemplate}" ItemsSource="{Binding ConcertsListByKind}" ItemTemplate="{StaticResource ConcertItemTemplate}"/>
+  HideEmptyGroups ="true" GroupHeaderTemplate="{StaticResource AddrBookGroupHeaderTemplate}" ItemsSource="{Binding ConcertsListByKind}" ItemTemplate="{StaticResource ConcertItemTemplate}" SelectedItem="{Binding SelectedConcert,Mode=TwoWay}"/>
                 </phone:PivotItem>
                 <phone:PivotItem>
                     <phone:LongListSelector
                     x:Name="concertByArtist" JumpListStyle="{StaticResource AddrBookJumpListStyle}" Background="Transparent" LayoutMode="List" IsGroupingEnabled="true"
-  HideEmptyGroups ="true" GroupHeaderTemplate="{StaticResource AddrBookGroupHeaderTemplate}" ItemsSource="{Binding ConcertsListByArtist}" ItemTemplate="{StaticResource ConcertItemTemplate}"/>
+  HideEmptyGroups ="true" GroupHeaderTemplate="{StaticResource AddrBookGroupHeaderTemplate}" ItemsSource="{Binding ConcertsListByArtist}" ItemTemplate="{StaticResource ConcertItemTemplate}" SelectedItem="{Binding SelectedConcert,Mode=TwoWay}"/>
 
                 </phone:PivotItem>
 

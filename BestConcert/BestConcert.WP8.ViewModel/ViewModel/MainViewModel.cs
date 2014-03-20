@@ -32,6 +32,19 @@ namespace BestConcert.WP8.ViewModel.ViewModel
 
         public UserModel secouriste { get; set; }
 
+        private ConcertModel _selectedConcert;
+
+        public ConcertModel SelectedConcert
+        {
+            get { return _selectedConcert; }
+            set
+            {
+                _selectedConcert = value;
+                nav.NavigateTo(new Uri("/View/DetailPage.xaml",UriKind.RelativeOrAbsolute));
+                RaisePropertyChanged(() => SelectedConcert);
+            }
+        }
+
         private ObservableCollection<ConcertModel> _concertsListFromWeb;
 
         public ObservableCollection<ConcertModel> ConcertsListFromWeb
@@ -156,6 +169,7 @@ namespace BestConcert.WP8.ViewModel.ViewModel
 
         public RelayCommand LoadPage { get; set; }
         public RelayCommand NavToSecoursList { get; set; }
+        public RelayCommand Logout { get; set; }
 
         #endregion
 
@@ -173,6 +187,12 @@ namespace BestConcert.WP8.ViewModel.ViewModel
 
             LoadPage = new RelayCommand(loadPage);
             NavToSecoursList = new RelayCommand(navtoSL);
+            Logout = new RelayCommand(logout);
+        }
+
+        private void logout()
+        {
+            throw new NotImplementedException();
         }
 
         private void navtoSL()
@@ -193,7 +213,12 @@ namespace BestConcert.WP8.ViewModel.ViewModel
             if (concertList != null)
             {
                 ConcertsListFromWeb = new ObservableCollection<ConcertModel>(concertList);
-                setPostesListe();
+                setPostesListe(false);
+            }
+            else
+            {
+                ConcertsListFromWeb = new ObservableCollection<ConcertModel>();
+                setPostesListe(true);
             }
         }
 
@@ -203,19 +228,29 @@ namespace BestConcert.WP8.ViewModel.ViewModel
             setPostesListe(index);#1#
         }*/
 
-        private void setPostesListe()
+        private void setPostesListe(bool isNull)
         {
-            ConcertsListByDate = new ObservableCollection<ConcertModel>(ConcertsListFromWeb.OrderBy(concert => concert.Date).ToList());
-            var byKind = ConcertsListFromWeb.OrderBy(concert => concert.Genre).ToList();
-            var byArtist = ConcertsListFromWeb.OrderBy(concert => concert.Artist).ToList();
+            if (isNull)
+            {
+                ConcertsListByDate = new ObservableCollection<ConcertModel>();
+                ConcertsListByKind = new List<KingOfConcertGroup<ConcertModel>>();
+                ConcertsListByArtist = new List<KingOfConcertGroup<ConcertModel>>();
+            }
+            else
+            {
+                ConcertsListByDate = new ObservableCollection<ConcertModel>(ConcertsListFromWeb.OrderBy(concert => concert.Date).ToList());
+                var byKind = ConcertsListFromWeb.OrderBy(concert => concert.Genre).ToList();
+                var byArtist = ConcertsListFromWeb.OrderBy(concert => concert.Artist).ToList();
 
-            ConcertsListByKind = KingOfConcertGroup<ConcertModel>.CreateGroups(byKind,
-           System.Threading.Thread.CurrentThread.CurrentUICulture,
-           (ConcertModel s) => { return s.Genre; }, true);
+                ConcertsListByKind = KingOfConcertGroup<ConcertModel>.CreateGroups(byKind,
+               System.Threading.Thread.CurrentThread.CurrentUICulture,
+               (ConcertModel s) => { return s.Genre; }, true);
 
-            ConcertsListByArtist = KingOfConcertGroup<ConcertModel>.CreateGroups(byArtist,
-            System.Threading.Thread.CurrentThread.CurrentUICulture,
-            (ConcertModel s) => { return s.Artist; }, true);
+                ConcertsListByArtist = KingOfConcertGroup<ConcertModel>.CreateGroups(byArtist,
+                System.Threading.Thread.CurrentThread.CurrentUICulture,
+                (ConcertModel s) => { return s.Artist; }, true); 
+            }
+            
         }
 
         private void loadPage()

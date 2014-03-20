@@ -259,10 +259,10 @@
 
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <StackPanel>
-                <TextBox x:Name="EmailTextBox"  Text="{Binding LoginEmail, Mode=TwoWay}" Style="{StaticResource MailTextStyle}"/>
+                <TextBox  x:Name="EmailTextBox"  Text="{Binding LoginEmail, Mode=TwoWay}" Style="{StaticResource MailTextStyle}" Width="320"/>
             </StackPanel>
             <StackPanel>
-                <PasswordBox  x:Name="PasswordTextBox"  Password="{Binding LoginPassword,Mode=TwoWay}" Style="{StaticResource PassTextStyle}"/>
+                <PasswordBox  x:Name="PasswordTextBox"  Password="{Binding LoginPassword,Mode=TwoWay}" Style="{StaticResource PassTextStyle}" Width="320"/>
             </StackPanel>
             <Button x:Name="LoginButton" Content="Log in" Command="{Binding LoginCommand}" Style="{StaticResource LoginButton}" Template="{StaticResource LognButtonStyle}"/>
             <Button x:Name="CreateButton" Content="Sign up" Command="{Binding SignUpCommand}" Style="{StaticResource LoginButton}" Template="{StaticResource LognButtonStyle}"/>

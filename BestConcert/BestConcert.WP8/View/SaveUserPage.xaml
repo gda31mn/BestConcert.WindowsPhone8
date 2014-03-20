@@ -20,7 +20,7 @@
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <i:Interaction.Behaviors>
-            <behaviors:ApplicationBarBehavior Mode="Minimized" IsMenuEnabled="True" IsVisible="True" Opacity="0.2">
+            <behaviors:ApplicationBarBehavior Mode="Default" IsMenuEnabled="True" IsVisible="True" Opacity="0.2">
                 <behaviors:ApplicationBarIconButton
 						IconUri="/Assets/Image/check.png"
 						Text="Check" Command="{Binding Check}"/>

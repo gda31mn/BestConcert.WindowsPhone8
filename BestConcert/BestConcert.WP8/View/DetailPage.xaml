@@ -6,29 +6,58 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
-    shell:SystemTray.IsVisible="True">
+    xmlns:Command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
+    xmlns:behaviors="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
+    shell:SystemTray.IsVisible="True"
+    DataContext="{Binding Detail,Source={StaticResource Locator}}">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
+        <i:Interaction.Behaviors>
+            <behaviors:ApplicationBarBehavior Mode="Default" IsMenuEnabled="True" IsVisible="True" Opacity="0.2">
+                <behaviors:ApplicationBarIconButton
+						IconUri="/Assets/Image/add.png"
+						Text="Add To Basket" Command="{Binding AddToBasket}"/>
+                <behaviors:ApplicationBarIconButton
+						IconUri="/Assets/Image/cancel.png"
+						Text="Basket" Command="{Binding NavToBasket}"/>
+                <behaviors:ApplicationBarIconButton
+						IconUri="/Assets/Image/cancel.png"
+						Text="Cancel" Command="{Binding Cancel}"/>
+            </behaviors:ApplicationBarBehavior>
+        </i:Interaction.Behaviors>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="MY APPLICATION" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="page name" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
-        </StackPanel>
+            <!--TitlePanel contains the name of the application and page title-->
+            <StackPanel Grid.Row="0" Margin="12,17,0,28">
+                <TextBlock Text="MY APPLICATION" Style="{StaticResource PhoneTextNormalStyle}"/>
+                <TextBlock Text="page name" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            </StackPanel>
 
-        <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-
+            <!--ContentPanel - place additional content here-->
+        <Grid Grid.Row="1" Margin="12,0,12,0">
+            <StackPanel>
+                <TextBlock Text="First Name" Margin="15,0,0,0"></TextBlock>
+                <TextBox Text="{Binding FirstName,Mode=TwoWay}"></TextBox>
+                <TextBlock Text="Last Name" Margin="15,0,0,0"></TextBlock>
+                <TextBox Text="{Binding LastName,Mode=TwoWay}"></TextBox>
+                <TextBlock Text="Password" Margin="15,0,0,0"></TextBlock>
+                <TextBox Text="{Binding Password,Mode=TwoWay}"></TextBox>
+                <TextBlock Text="Email" Margin="15,0,0,0"></TextBlock>
+                <TextBox Text="{Binding Email,Mode=TwoWay}"></TextBox>
+                <TextBlock Text="Address" Margin="15,0,0,0"></TextBlock>
+                <TextBox Text="{Binding Address,Mode=TwoWay}"></TextBox>
+            </StackPanel>
         </Grid>
     </Grid>
 
