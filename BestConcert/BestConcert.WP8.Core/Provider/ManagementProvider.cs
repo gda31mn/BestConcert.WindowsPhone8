@@ -69,11 +69,11 @@ namespace BestConcert.WP8.Core.Provider
             }
         }
 
-        public static async Task<UserModel> GetUserAsync(string userId)
+        public static async Task<UserModel> GetUserAsync(string token)
         {
             try
             {
-                var req = await BestConcertManagement.GetUserAsync(userId);
+                var req = await BestConcertManagement.GetUserAsync(token);
                 var result = JsonConvert.DeserializeObject<UserModel>(req);
 
                 return result;
@@ -84,12 +84,12 @@ namespace BestConcert.WP8.Core.Provider
             }
         }
 
-        public static async Task<UserModel> SetUserAsync(string userId, string firstName, string lastName, string password,
+        public static async Task<UserModel> SetUserAsync(string token, string firstName, string lastName, string password,
             string email, string address)
         {
             try
             {
-                var req = await BestConcertManagement.SetUserAsync( userId, firstName, lastName, password, email, address);
+                var req = await BestConcertManagement.SetUserAsync(token, firstName, lastName, password, email, address);
                 var result = JsonConvert.DeserializeObject<UserModel>(req);
 
                 return result;
@@ -100,11 +100,11 @@ namespace BestConcert.WP8.Core.Provider
             }
         }
 
-        public static async Task<UserModel> SetUserPasswordAsync(string userId, string password)
+        public static async Task<UserModel> SetUserPasswordAsync(string token, string password)
         {
             try
             {
-                var req = await BestConcertManagement.SetUserPasswordAsync(userId, password);
+                var req = await BestConcertManagement.SetUserPasswordAsync(token, password);
                 var result = JsonConvert.DeserializeObject<UserModel>(req);
 
                 return result;
@@ -183,11 +183,11 @@ namespace BestConcert.WP8.Core.Provider
 
         #region Order
 
-        public static async Task<List<Order>> GetAllOrdersFromUserIdAsync(string userId)
+        public static async Task<List<Order>> GetAllOrdersFromUserIdAsync(string token)
         {
             try
             {
-                var req = await BestConcertManagement.GetAllOrdersFromUserIdAsync(userId);
+                var req = await BestConcertManagement.GetAllOrdersFromUserIdAsync(token);
                 var result = JsonConvert.DeserializeObject<List<Order>>(req);
 
                 return result;
@@ -198,11 +198,11 @@ namespace BestConcert.WP8.Core.Provider
             }
         }
 
-        public static async Task<Order> GetCurrentOrderFromUserIdAsync(string userId)
+        public static async Task<Order> GetCurrentOrderFromUserIdAsync(string token)
         {
             try
             {
-                var req = await BestConcertManagement.GetCurrentOrderFromUserIdAsync(userId);
+                var req = await BestConcertManagement.GetCurrentOrderFromUserIdAsync(token);
                 var result = JsonConvert.DeserializeObject<Order>(req);
 
                 return result;
@@ -213,11 +213,11 @@ namespace BestConcert.WP8.Core.Provider
             }
         }
 
-        public static async Task<List<Order>> GetHistoryOrdersFromUserIdAsync(string userId)
+        public static async Task<List<Order>> GetHistoryOrdersFromUserIdAsync(string token)
         {
             try
             {
-                var req = await BestConcertManagement.GetHistoryOrdersFromUserIdAsync(userId);
+                var req = await BestConcertManagement.GetHistoryOrdersFromUserIdAsync(token);
                 var result = JsonConvert.DeserializeObject<List<Order>>(req);
 
                 return result;
@@ -228,11 +228,11 @@ namespace BestConcert.WP8.Core.Provider
             }
         }
 
-        public static async Task AddOrderItemAsync(string userId, string concertId, string quantity)
+        public static async Task AddOrderItemAsync(string token, string concertId, string quantity)
         {
             try
             {
-                var req = await BestConcertManagement.AddOrderItemAsync( userId, concertId, quantity);
+                var req = await BestConcertManagement.AddOrderItemAsync(token, concertId, quantity);
                 //var result = JsonConvert.DeserializeObject<List<Order>>(req);
 
                 //return result;

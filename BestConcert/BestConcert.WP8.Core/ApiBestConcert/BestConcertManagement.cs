@@ -76,14 +76,14 @@ namespace BestConcert.WP8.Core.ApiBestConcert
             }
         }
 
-        internal static async Task<string> GetUserAsync(string userId)
+        internal static async Task<string> GetUserAsync(string token)
         {
             try
             {
-                if(!String.IsNullOrEmpty(userId))
+                if (!String.IsNullOrEmpty(token))
                     throw new Exception("Invalide Info !");
 
-                var requestUrl = string.Format(UrlBestConcert + "/user/getuser?userid={0}", userId);
+                var requestUrl = string.Format(UrlBestConcert + "/user/getuser?token={0}", token);
                 var req = await WebRequest.Create(requestUrl, "GET", false);
 
                 return req;
@@ -95,15 +95,15 @@ namespace BestConcert.WP8.Core.ApiBestConcert
             }
         }
 
-        internal static async Task<string> SetUserAsync(string userId, string firstName, string lastName, string password,
+        internal static async Task<string> SetUserAsync(string token, string firstName, string lastName, string password,
             string email, string address)
         {
             try
             {
-                if (!String.IsNullOrEmpty(userId) && !String.IsNullOrEmpty(firstName) && !String.IsNullOrEmpty(lastName) && !String.IsNullOrEmpty(password) && !String.IsNullOrEmpty(email) && !String.IsNullOrEmpty(address) )
+                if (!String.IsNullOrEmpty(token) && !String.IsNullOrEmpty(firstName) && !String.IsNullOrEmpty(lastName) && !String.IsNullOrEmpty(password) && !String.IsNullOrEmpty(email) && !String.IsNullOrEmpty(address))
                     throw new Exception("Invalide Info !");
 
-                var requestUrl = string.Format(UrlBestConcert + "/user/setuser?userid={0}&firstName={1}&lastName={2}&password={3}&email={4}&address={5}", userId, firstName, lastName, password, email, address);
+                var requestUrl = string.Format(UrlBestConcert + "/user/setuser?userid={0}&firstName={1}&lastName={2}&password={3}&email={4}&address={5}", token, firstName, lastName, password, email, address);
                 var req = await WebRequest.Create(requestUrl, "GET", false);
 
                 return req;
@@ -114,14 +114,14 @@ namespace BestConcert.WP8.Core.ApiBestConcert
             }
         }
 
-        internal static async Task<string> SetUserPasswordAsync(string userId, string password)
+        internal static async Task<string> SetUserPasswordAsync(string token, string password)
         {
             try
             {
-                if (!String.IsNullOrEmpty(userId) && !String.IsNullOrEmpty(password))
+                if (!String.IsNullOrEmpty(token) && !String.IsNullOrEmpty(password))
                     throw new Exception("Invalide Info !");
 
-                var requestUrl = string.Format(UrlBestConcert + "/user/setuserpassword?userid={0}&password={1}", userId, password);
+                var requestUrl = string.Format(UrlBestConcert + "/user/setuserpassword?token={0}&password={1}", token, password);
                 var req = await WebRequest.Create(requestUrl, "GET", false);
 
                 return req;
@@ -213,14 +213,14 @@ namespace BestConcert.WP8.Core.ApiBestConcert
 
         #region Order
 
-        internal static async Task<string> GetAllOrdersFromUserIdAsync(string userId)
+        internal static async Task<string> GetAllOrdersFromUserIdAsync(string token)
         {
             try
             {
-                if (!String.IsNullOrEmpty(userId))
+                if (!String.IsNullOrEmpty(token))
                     throw new Exception("Invalid Parameter !");
 
-                var requestUrl = string.Format(UrlBestConcert + "/order/getallordersfromuserid?userId={0}", userId);
+                var requestUrl = string.Format(UrlBestConcert + "/order/getallordersfromuserid?token={0}", token);
                 var req = await WebRequest.Create(requestUrl, "GET", false);
 
                 return req;
@@ -231,14 +231,14 @@ namespace BestConcert.WP8.Core.ApiBestConcert
             }
         }
 
-        internal static async Task<string> GetCurrentOrderFromUserIdAsync(string userId)
+        internal static async Task<string> GetCurrentOrderFromUserIdAsync(string token)
         {
             try
             {
-                if (!String.IsNullOrEmpty(userId))
+                if (!String.IsNullOrEmpty(token))
                     throw new Exception("Invalid Parameter !");
 
-                var requestUrl = string.Format(UrlBestConcert + "/order/getcurrentorderfromuserid?userId={0}", userId);
+                var requestUrl = string.Format(UrlBestConcert + "/order/getcurrentorderfromuserid?token={0}", token);
                 var req = await WebRequest.Create(requestUrl, "GET", false);
 
                 return req;
@@ -249,14 +249,14 @@ namespace BestConcert.WP8.Core.ApiBestConcert
             }
         }
 
-        internal static async Task<string> GetHistoryOrdersFromUserIdAsync(string userId)
+        internal static async Task<string> GetHistoryOrdersFromUserIdAsync(string token)
         {
             try
             {
-                if (!String.IsNullOrEmpty(userId))
+                if (!String.IsNullOrEmpty(token))
                     throw new Exception("Invalid Parameter !");
 
-                var requestUrl = string.Format(UrlBestConcert + "/order/gethistoryordersfromuserid?userId={0}", userId);
+                var requestUrl = string.Format(UrlBestConcert + "/order/gethistoryordersfromuserid?token={0}", token);
                 var req = await WebRequest.Create(requestUrl, "GET", false);
 
                 return req;
@@ -267,14 +267,14 @@ namespace BestConcert.WP8.Core.ApiBestConcert
             }
         }
 
-        internal static async Task<string> AddOrderItemAsync(string userId, string concertId, string quantity)
+        internal static async Task<string> AddOrderItemAsync(string token, string concertId, string quantity)
         {
             try
             {
-                if (!String.IsNullOrEmpty(userId) && !String.IsNullOrEmpty(concertId) && !String.IsNullOrEmpty(quantity))
+                if (!String.IsNullOrEmpty(token) && !String.IsNullOrEmpty(concertId) && !String.IsNullOrEmpty(quantity))
                     throw new Exception("Invalid Parameter !");
 
-                var requestUrl = string.Format(UrlBestConcert + "/order/addorderitem?userId={0}&concerId={1}&quantity={2}", userId, concertId, quantity);
+                var requestUrl = string.Format(UrlBestConcert + "/order/addorderitem?token={0}&concerId={1}&quantity={2}", token, concertId, quantity);
                 var req = await WebRequest.Create(requestUrl, "GET", false);
 
                 return req;
@@ -304,6 +304,14 @@ namespace BestConcert.WP8.Core.ApiBestConcert
             }
         }
 
+        #endregion
+
+        #region OrderItem
+
+        internal static async Task<string> DeleteOrderItemAsync()
+        {
+            return null;
+        }
         #endregion
     }
 }
