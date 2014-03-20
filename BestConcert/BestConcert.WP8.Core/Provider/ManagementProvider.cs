@@ -24,6 +24,12 @@ namespace BestConcert.WP8.Core.Provider
             try
             {
                 var result = await BestConcertManagement.Login(username, password);
+
+                if ((bool)result[0])
+                {
+                    result[1] = JsonConvert.DeserializeObject<UserModel>((string)result[1]);
+                }
+
                 return result;
             }
             catch (Exception exception)
