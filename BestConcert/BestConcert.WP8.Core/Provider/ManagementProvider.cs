@@ -27,7 +27,7 @@ namespace BestConcert.WP8.Core.Provider
 
                 if ((bool)result[0])
                 {
-                    result[1] = JsonConvert.DeserializeObject<List<UserModel>>((string)result[1]);
+                    result[1] = JsonConvert.DeserializeObject<UserModel>((string)result[1]);
                 }
 
                 return result;
