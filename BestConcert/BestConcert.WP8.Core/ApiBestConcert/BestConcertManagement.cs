@@ -217,7 +217,7 @@ namespace BestConcert.WP8.Core.ApiBestConcert
         {
             try
             {
-                if (!String.IsNullOrEmpty(token))
+                if (String.IsNullOrEmpty(token))
                     throw new Exception("Invalid Parameter !");
 
                 var requestUrl = string.Format(UrlBestConcert + "/order/getallordersfromuserid?token={0}", token);
@@ -274,7 +274,7 @@ namespace BestConcert.WP8.Core.ApiBestConcert
                 if (String.IsNullOrEmpty(token) || String.IsNullOrEmpty(concertId) || String.IsNullOrEmpty(quantity))
                     throw new Exception("Invalid Parameter !");
 
-                var requestUrl = string.Format(UrlBestConcert + "/order/addorderitem?token={0}&concerId={1}&quantity={2}", token, concertId, quantity);
+                var requestUrl = string.Format(UrlBestConcert + "/order/addorderitem?token={0}&concertId={1}&quantity={2}", token, concertId, quantity);
                 var req = await WebRequest.Create(requestUrl, "GET", false);
 
                 return req;

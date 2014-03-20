@@ -264,11 +264,11 @@
             <StackPanel>
                 <PasswordBox  x:Name="PasswordTextBox"  Password="{Binding LoginPassword,Mode=TwoWay}" Style="{StaticResource PassTextStyle}" Width="320"/>
             </StackPanel>
+            <ProgressBar IsIndeterminate="True"  Visibility="{Binding ProgressVisibility,Mode=TwoWay}"  Height="20" Foreground="White" />
+            <TextBlock Foreground="White" HorizontalAlignment="Center" Text="Vérifier vos informations" Visibility="{Binding VerifVisibility}"/>
             <Button x:Name="LoginButton" Content="Log in" Command="{Binding LoginCommand}" Style="{StaticResource LoginButton}" Template="{StaticResource LognButtonStyle}"/>
             <Button x:Name="CreateButton" Content="Sign up" Command="{Binding SignUpCommand}" Style="{StaticResource LoginButton}" Template="{StaticResource LognButtonStyle}"/>
             <TextBlock Foreground="Black" HorizontalAlignment="Center" Text="Connection..." Visibility="{Binding ProgressVisibility,Mode=TwoWay}"/>
-            <ProgressBar IsIndeterminate="True"  Visibility="{Binding ProgressVisibility,Mode=TwoWay}" Height="20" Foreground="Black" />
-            <TextBlock Foreground="Red" HorizontalAlignment="Center" Text="Vérifier vos informations" Visibility="{Binding VerifVisibility}"/>
 
         </StackPanel>
     </Grid>

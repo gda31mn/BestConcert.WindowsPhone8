@@ -26,7 +26,7 @@
 						Text="Add To Basket" Command="{Binding AddToBasket}"/>
                 <behaviors:ApplicationBarIconButton
 						IconUri="/Assets/Image/mail.png"
-						Text="Basket" Command="{Binding NavToBasket}"/>
+						Text="Basket" Command="{Binding Basket}"/>
                 <behaviors:ApplicationBarIconButton
 						IconUri="/Assets/Image/cancel.png"
 						Text="Cancel" Command="{Binding Cancel}"/>

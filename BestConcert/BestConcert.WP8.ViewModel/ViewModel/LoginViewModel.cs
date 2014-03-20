@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using BestConcert.WP8.Core.Provider;
@@ -118,6 +120,7 @@ namespace BestConcert.WP8.ViewModel.ViewModel
                 if ((bool)connection[0])
                 {
                     Singleton.UserDataSingleton.Instance.User = (UserModel)connection[1];
+                    Singleton.UserDataSingleton.Instance.User.Orders = await getUserOrders();
                     VerifVisibility = Visibility.Collapsed;
 
                     nav.NavigateTo(new Uri("/View/MainPage.xaml", UriKind.RelativeOrAbsolute));
@@ -140,6 +143,11 @@ namespace BestConcert.WP8.ViewModel.ViewModel
 
 
            
+        }
+
+        private Task<List<Order>> getUserOrders()
+        {
+            return ManagementProvider.GetAllOrdersFromUserIdAsync(Singleton.UserDataSingleton.Instance.User.Token);
         }
 
         #region Business methods
