@@ -117,6 +117,7 @@ namespace BestConcert.WP8.ViewModel.ViewModel
                 object[] connection = await ManagementProvider.SignInAsync(LoginEmail, passwordSha);
                 if ((bool)connection[0])
                 {
+                    Singleton.UserDataSingleton.Instance.User = (UserModel)connection[1];
                     VerifVisibility = Visibility.Collapsed;
 
                     nav.NavigateTo(new Uri("/View/MainPage.xaml", UriKind.RelativeOrAbsolute));

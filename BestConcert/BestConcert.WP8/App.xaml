@@ -18,6 +18,7 @@
             
             <!-- converter -->
             <converter:DebugConverter x:Key="DebugConverter" />
+            <converter:PriceToEuroConverter x:Key="PriceToEuroConverter" />
         </ResourceDictionary>
     </Application.Resources>
     <Application.ApplicationLifetimeObjects>

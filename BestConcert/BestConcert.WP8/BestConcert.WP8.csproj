@@ -94,6 +94,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converter\DebugConverter.cs" />
+    <Compile Include="Converter\PriceToEuroConverter.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Tools\KingOfConcertGroup.cs" />
     <Compile Include="View\DetailPage.xaml.cs">
@@ -163,6 +164,7 @@
     </Content>
     <Content Include="Assets\Image\add.png" />
     <Content Include="Assets\Image\check.png" />
+    <Content Include="Assets\Image\folder.png" />
     <Content Include="Assets\Image\lock.png" />
     <Content Include="Assets\Image\concert.png" />
     <Content Include="Assets\Image\cancel.png" />

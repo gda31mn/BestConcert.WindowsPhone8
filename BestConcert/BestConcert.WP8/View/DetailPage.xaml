@@ -25,7 +25,7 @@
 						IconUri="/Assets/Image/add.png"
 						Text="Add To Basket" Command="{Binding AddToBasket}"/>
                 <behaviors:ApplicationBarIconButton
-						IconUri="/Assets/Image/cancel.png"
+						IconUri="/Assets/Image/mail.png"
 						Text="Basket" Command="{Binding NavToBasket}"/>
                 <behaviors:ApplicationBarIconButton
 						IconUri="/Assets/Image/cancel.png"
@@ -47,16 +47,11 @@
             <!--ContentPanel - place additional content here-->
         <Grid Grid.Row="1" Margin="12,0,12,0">
             <StackPanel>
-                <TextBlock Text="First Name" Margin="15,0,0,0"></TextBlock>
-                <TextBox Text="{Binding FirstName,Mode=TwoWay}"></TextBox>
-                <TextBlock Text="Last Name" Margin="15,0,0,0"></TextBlock>
-                <TextBox Text="{Binding LastName,Mode=TwoWay}"></TextBox>
-                <TextBlock Text="Password" Margin="15,0,0,0"></TextBlock>
-                <TextBox Text="{Binding Password,Mode=TwoWay}"></TextBox>
-                <TextBlock Text="Email" Margin="15,0,0,0"></TextBlock>
-                <TextBox Text="{Binding Email,Mode=TwoWay}"></TextBox>
-                <TextBlock Text="Address" Margin="15,0,0,0"></TextBlock>
-                <TextBox Text="{Binding Address,Mode=TwoWay}"></TextBox>
+                <TextBlock Text="{Binding CurrentConcert.Date}" Margin="15,0,0,0"></TextBlock>
+                <TextBlock Text="{Binding CurrentConcert.Genre}" Margin="15,0,0,0"></TextBlock>
+                <TextBlock Text="{Binding CurrentConcert.Artist}" Margin="15,0,0,0"></TextBlock>
+                <TextBlock Text="{Binding CurrentConcert.Location}" Margin="15,0,0,0"></TextBlock>
+                <TextBlock Text="{Binding CurrentConcert.Price,Converter={StaticResource PriceToEuroConverter}}" Margin="15,0,0,0"></TextBlock>
             </StackPanel>
         </Grid>
     </Grid>

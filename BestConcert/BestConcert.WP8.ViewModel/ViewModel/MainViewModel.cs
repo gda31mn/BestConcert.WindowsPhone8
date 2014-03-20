@@ -40,7 +40,11 @@ namespace BestConcert.WP8.ViewModel.ViewModel
             set
             {
                 _selectedConcert = value;
-                nav.NavigateTo(new Uri("/View/DetailPage.xaml",UriKind.RelativeOrAbsolute));
+                if (_selectedConcert != null)
+                {
+                    Singleton.ConcertDataSingleton.Instance.Concert = _selectedConcert;
+                    nav.NavigateTo(new Uri("/View/DetailPage.xaml", UriKind.RelativeOrAbsolute));
+                }
                 RaisePropertyChanged(() => SelectedConcert);
             }
         }
@@ -248,9 +252,9 @@ namespace BestConcert.WP8.ViewModel.ViewModel
 
                 ConcertsListByArtist = KingOfConcertGroup<ConcertModel>.CreateGroups(byArtist,
                 System.Threading.Thread.CurrentThread.CurrentUICulture,
-                (ConcertModel s) => { return s.Artist; }, true); 
+                (ConcertModel s) => { return s.Artist; }, true);
             }
-            
+
         }
 
         private void loadPage()
