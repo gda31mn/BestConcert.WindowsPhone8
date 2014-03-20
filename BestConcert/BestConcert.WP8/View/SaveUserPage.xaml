@@ -15,10 +15,19 @@
     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
     xmlns:behaviors="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
     shell:SystemTray.IsVisible="True"
+    shell:SystemTray.BackgroundColor="{StaticResource PurpleColor}"
+    shell:SystemTray.ForegroundColor="{StaticResource WhiteColor}"
     DataContext="{Binding Save,Source={StaticResource Locator}}">
 
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator IsVisible="True" Text="BestConcert"/>
+    </shell:SystemTray.ProgressIndicator>
+    
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <ImageBrush Stretch="Fill" ImageSource="/Assets/Image/concert.png"/>
+        </Grid.Background>
         <i:Interaction.Behaviors>
             <behaviors:ApplicationBarBehavior Mode="Default" IsMenuEnabled="True" IsVisible="True" Opacity="0.2">
                 <behaviors:ApplicationBarIconButton
@@ -38,23 +47,22 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="MY APPLICATION" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="page name" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock Text="Singn Up" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Foreground="{StaticResource BlackBrush}" FontSize="36" FontWeight="Bold"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0" Background="{StaticResource WhiteBrush}">
             <StackPanel>
-                <TextBlock Text="First Name" Margin="15,0,0,0"></TextBlock>
-                <TextBox Text="{Binding FirstName,Mode=TwoWay}"></TextBox>
-                <TextBlock Text="Last Name" Margin="15,0,0,0"></TextBlock>
-                <TextBox Text="{Binding LastName,Mode=TwoWay}"></TextBox>
-                <TextBlock Text="Password" Margin="15,0,0,0"></TextBlock>
-                <TextBox Text="{Binding Password,Mode=TwoWay}"></TextBox>
-                <TextBlock Text="Email" Margin="15,0,0,0"></TextBlock>
-                <TextBox Text="{Binding Email,Mode=TwoWay}"></TextBox>
-                <TextBlock Text="Address" Margin="15,0,0,0"></TextBlock>
-                <TextBox Text="{Binding Address,Mode=TwoWay}"></TextBox>
+                <TextBlock Text="First Name" Margin="15,0,0,0" Foreground="{StaticResource BlackBrush}"></TextBlock>
+                <TextBox Text="{Binding FirstName,Mode=TwoWay}" BorderBrush="{StaticResource GreyBrush}"></TextBox>
+                <TextBlock Text="Last Name" Margin="15,0,0,0" Foreground="{StaticResource BlackBrush}"></TextBlock>
+                <TextBox Text="{Binding LastName,Mode=TwoWay}" BorderBrush="{StaticResource GreyBrush}"></TextBox>
+                <TextBlock Text="Password" Margin="15,0,0,0" Foreground="{StaticResource BlackBrush}"></TextBlock>
+                <TextBox Text="{Binding Password,Mode=TwoWay}" BorderBrush="{StaticResource GreyBrush}"></TextBox>
+                <TextBlock Text="Email" Margin="15,0,0,0" Foreground="{StaticResource BlackBrush}"></TextBlock>
+                <TextBox Text="{Binding Email,Mode=TwoWay}" BorderBrush="{StaticResource GreyBrush}"></TextBox>
+                <TextBlock Text="Address" Margin="15,0,0,0" Foreground="{StaticResource BlackBrush}"></TextBlock>
+                <TextBox Text="{Binding Address,Mode=TwoWay}" BorderBrush="{StaticResource GreyBrush}"></TextBox>
             </StackPanel>
         </Grid>
     </Grid>

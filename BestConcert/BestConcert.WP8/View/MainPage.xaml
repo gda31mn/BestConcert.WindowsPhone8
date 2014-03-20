@@ -18,8 +18,14 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="True"
+    shell:SystemTray.BackgroundColor="{StaticResource PurpleColor}"
+    shell:SystemTray.ForegroundColor="{StaticResource WhiteColor}"
     DataContext="{Binding Source={StaticResource Locator}, Path=Main }">
-    
+
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator IsVisible="True" Text="BestConcert"/>
+    </shell:SystemTray.ProgressIndicator>
+
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <command:EventToCommand Command="{Binding LoadPage}" />
@@ -360,7 +366,7 @@
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                 <GradientStop Color="Black" Offset="0"/>
-                <GradientStop Color="White"/>
+                <GradientStop Color="{StaticResource WhiteColor}"/>
             </LinearGradientBrush>
         </Grid.Background>
 
@@ -382,7 +388,7 @@
                      ScrollViewer.VerticalScrollBarVisibility="Disabled"
                      ItemContainerStyle="{StaticResource ListBoxItemStyle}"                     
                      SelectedIndex="{Binding SelectedIndex, ElementName=ContentPivot, Mode=TwoWay}"
-                     Background="#DC7563"
+                     Background="#5E5078"
                      >
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
