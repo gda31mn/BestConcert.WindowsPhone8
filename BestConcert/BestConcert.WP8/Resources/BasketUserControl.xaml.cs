@@ -1,21 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Net;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Navigation;
 using BestConcert.WP8.Model;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
 
-namespace BestConcert.WP8
+namespace BestConcert.WP8.Resources
 {
-    public partial class BascketUserControl : UserControl
+    public partial class BasketUserControl : UserControl
     {
         public static readonly DependencyProperty ListSourceProperty =
-            DependencyProperty.Register("ListSource", typeof(string), typeof(BascketUserControl), new PropertyMetadata(default(ObservableCollection<Order>)));
+            DependencyProperty.Register("ListSource", typeof(string), typeof(BasketUserControl), new PropertyMetadata(default(ObservableCollection<Order>)));
 
         public ObservableCollection<Order> ListSource
         {
@@ -25,7 +19,7 @@ namespace BestConcert.WP8
 
         public event EventHandler CloseClick;
 
-        public BascketUserControl()
+        public BasketUserControl()
         {
             InitializeComponent();
             LayoutRoot.DataContext = this;

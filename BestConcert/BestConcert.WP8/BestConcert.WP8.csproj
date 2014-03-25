@@ -97,8 +97,8 @@
     <Compile Include="Converter\DebugConverter.cs" />
     <Compile Include="Converter\PriceToEuroConverter.cs" />
     <Compile Include="LocalizedStrings.cs" />
-    <Compile Include="Resources\BascketUserControl.xaml.cs">
-      <DependentUpon>BascketUserControl.xaml</DependentUpon>
+    <Compile Include="Resources\BasketUserControl.xaml.cs">
+      <DependentUpon>BasketUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Tools\KingOfConcertGroup.cs" />
     <Compile Include="View\DetailPage.xaml.cs">
@@ -129,7 +129,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
-    <Page Include="Resources\BascketUserControl.xaml">
+    <Page Include="Resources\BasketUserControl.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -17,7 +17,17 @@ namespace BestConcert.WP8.ViewModel.ViewModel
     {
 
         public ConcertModel CurrentConcert { get; set; }
+        private List<OrderItem> _currentOrder;
 
+        public List<OrderItem> CurrentOrder
+        {
+            get { return _currentOrder; }
+            set
+            {
+                _currentOrder = value;
+                RaisePropertyChanged(() => CurrentOrder);
+            }
+        }
         public UserModel CurrentUser { get; set; }
 
         public RelayCommand AddToBasket { get; set; }
@@ -35,7 +45,18 @@ namespace BestConcert.WP8.ViewModel.ViewModel
                 RaisePropertyChanged(() => Quantity);
             }
         }
+        private Visibility _basketVisibilite;
 
+        public Visibility BasketVisibilite
+        {
+            get { return _basketVisibilite; }
+            set
+            {
+                _basketVisibilite = value;
+                RaisePropertyChanged(() => BasketVisibilite);
+            }
+        }
+        
         private INavigationService _nav;
         public DetailViewModel(INavigationService nav)
         {
@@ -45,9 +66,15 @@ namespace BestConcert.WP8.ViewModel.ViewModel
             AddToBasket = new RelayCommand(addToBasket);
             Basket = new RelayCommand(basket);
             Cancel = new RelayCommand(goBack);
-
+            GetCurrentOrder();
+            BasketVisibilite = Visibility.Collapsed;
             //Test
             _quantity = 5;
+        }
+
+        private async void GetCurrentOrder()
+        {
+            CurrentOrder = (await ManagementProvider.GetCurrentOrderFromUserTokenAsync(CurrentUser.Token)).OrderItems;
         }
 
         private void goBack()
@@ -55,15 +82,9 @@ namespace BestConcert.WP8.ViewModel.ViewModel
             _nav.GoBack();
         }
 
-        private async void basket()
+        private void basket()
         {
-            foreach (var order in Singleton.UserDataSingleton.Instance.User.Orders)
-            {
-                foreach (var orderItem in order.OrderItems)
-                {
-                    Debug.WriteLine(orderItem.Concert.Artist);
-                }
-            }
+            BasketVisibilite = Visibility.Visible;
         }
 
         private async void addToBasket()

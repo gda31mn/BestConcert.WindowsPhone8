@@ -231,14 +231,14 @@ namespace BestConcert.WP8.Core.ApiBestConcert
             }
         }
 
-        internal static async Task<string> GetCurrentOrderFromUserIdAsync(string token)
+        internal static async Task<string> GetCurrentOrderFromUserTokenAsync(string token)
         {
             try
             {
                 if (String.IsNullOrEmpty(token))
                     throw new Exception("Invalid Parameter !");
 
-                var requestUrl = string.Format(UrlBestConcert + "/order/getcurrentorderfromuserid?token={0}", token);
+                var requestUrl = string.Format(UrlBestConcert + "/order/getcurrentorderfromusertoken?token={0}", token);
                 var req = await WebRequest.Create(requestUrl, "GET", false);
 
                 return req;

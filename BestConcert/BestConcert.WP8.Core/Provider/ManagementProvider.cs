@@ -198,11 +198,11 @@ namespace BestConcert.WP8.Core.Provider
             }
         }
 
-        public static async Task<Order> GetCurrentOrderFromUserIdAsync(string token)
+        public static async Task<Order> GetCurrentOrderFromUserTokenAsync(object token)
         {
             try
             {
-                var req = await BestConcertManagement.GetCurrentOrderFromUserIdAsync(token);
+                var req = await BestConcertManagement.GetCurrentOrderFromUserTokenAsync(token.ToString());
                 var result = JsonConvert.DeserializeObject<Order>(req);
 
                 return result;

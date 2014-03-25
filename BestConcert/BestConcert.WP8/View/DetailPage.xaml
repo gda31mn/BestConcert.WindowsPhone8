@@ -14,6 +14,7 @@
     mc:Ignorable="d"
     xmlns:Command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
     xmlns:behaviors="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
+    xmlns:resources="clr-namespace:BestConcert.WP8.Resources"
     shell:SystemTray.IsVisible="True"
     DataContext="{Binding Detail,Source={StaticResource Locator}}">
 
@@ -37,13 +38,14 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
-            <!--TitlePanel contains the name of the application and page title-->
+        <resources:BasketUserControl Grid.Row="0" Grid.RowSpan="2" x:Name="basket" ListSource="{Binding CurrentOrder}" Visibility="{Binding BasketVisibilite,Mode=TwoWay}" CloseClick="CloseBasket" />
+        <!--TitlePanel contains the name of the application and page title-->
             <StackPanel Grid.Row="0" Margin="12,17,0,28">
                 <TextBlock Text="MY APPLICATION" Style="{StaticResource PhoneTextNormalStyle}"/>
                 <TextBlock Text="page name" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
             </StackPanel>
 
+        
             <!--ContentPanel - place additional content here-->
         <Grid Grid.Row="1" Margin="12,0,12,0">
             <StackPanel>
