@@ -10,6 +10,9 @@
 
     <Color x:Key="BlackColor">#FF000000</Color>
     <SolidColorBrush x:Key="BlackBrush" Color="{StaticResource BlackColor}"/>
+
+    <Color x:Key="PurpleColor">#5E5078</Color>
+    <SolidColorBrush x:Key="PurpleBrush" Color="{StaticResource PurpleColor}"/>
     
     <!-- DataTemplate -->
     

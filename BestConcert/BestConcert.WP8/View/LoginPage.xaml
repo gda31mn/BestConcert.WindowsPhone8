@@ -12,24 +12,21 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True"
+    shell:SystemTray.BackgroundColor="{StaticResource PurpleColor}"
+    shell:SystemTray.ForegroundColor="{StaticResource WhiteColor}"
     DataContext="{Binding Login,Source={StaticResource Locator}}">
-    <UserControl.Resources>
-        <Style x:Key="LoginGrid" TargetType="Grid">
-            <Setter Property="Background" Value="#74675A" />
-        </Style>
+
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator IsVisible="True" Text="BestConcert"/>
+    </shell:SystemTray.ProgressIndicator>
+
+    <phone:PhoneApplicationPage.Resources>
+        
         <Style x:Key="LoginButton" TargetType="Button">
             <Setter Property="Background" Value="#74675A" />
             <Setter Property="FontSize" Value="32" />
             <Setter Property="FontFamily" Value="Segoe WP" />
             <Setter Property="Margin" Value="0,20,0,0" />
-        </Style>
-        <Style x:Key="LoginTextBlock" TargetType="TextBlock">
-            <Setter Property="Foreground" Value="#FF74675A" />
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="FontSize" Value="20"/>
-            <Setter Property="TextWrapping" Value="Wrap"/>
-            <Setter Property="Margin" Value="12,20,0,0" />
         </Style>
 
         <ControlTemplate x:Key="LognButtonStyle" TargetType="ButtonBase">
@@ -248,7 +245,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-    </UserControl.Resources>
+    </phone:PhoneApplicationPage.Resources>
 
     <Grid x:Name="LayoutRoot">
         <Grid.Background>
