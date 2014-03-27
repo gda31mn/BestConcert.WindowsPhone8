@@ -256,5 +256,40 @@ namespace BestConcert.WP8.Core.Provider
         }
 
         #endregion
+
+        #region Payement
+
+        public static async Task<CheckCreditCardModel> CheckCreditCardAsync(string userToken, string creditCardNumber, string expirationDate)
+        {
+            try
+            {
+                var req = await PayementBestConcert.CheckCreditCardAsync(userToken, creditCardNumber, expirationDate);
+                var result = JsonConvert.DeserializeObject<CheckCreditCardModel>(req);
+
+                return result;
+
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
+            }
+        }
+
+        public static async Task<ValidateSecureTokenModel> ValidateSecureTokenAsync(string userToken, string secureToken)
+        {
+            try
+            {
+                var req = await PayementBestConcert.ValidateSecureTokenAsync(userToken, secureToken);
+                var result = JsonConvert.DeserializeObject<ValidateSecureTokenModel>(req);
+
+                return result;
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
+            }
+        }
+
+        #endregion
     }
 }
