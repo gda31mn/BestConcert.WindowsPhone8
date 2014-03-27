@@ -48,6 +48,7 @@ namespace BestConcert.WP8.ViewModel
             SimpleIoc.Default.Register<SaveUserViewModel>();
             SimpleIoc.Default.Register<DetailViewModel>();
             SimpleIoc.Default.Register<ValidationViewModel>();
+            SimpleIoc.Default.Register<TokenValidationViewModel>();
         }
 
         public MainViewModel Main
@@ -87,6 +88,14 @@ namespace BestConcert.WP8.ViewModel
             get
             {
                 return ServiceLocator.Current.GetInstance<ValidationViewModel>();
+            }
+        }
+
+        public TokenValidationViewModel TokenValidation
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<TokenValidationViewModel>();
             }
         }
         

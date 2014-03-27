@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
+using BestConcert.WP8.Core.Provider;
+using BestConcert.WP8.Model;
+using Cimbalino.Phone.Toolkit.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 
@@ -35,19 +39,44 @@ namespace BestConcert.WP8.ViewModel.ViewModel
             }
         }
 
-        public ICommand ValidationCommand { get; set; }
+        public ICommand ValidateCommand { get; set; }
 
-        public ValidationViewModel()
+
+        private UserModel _userConnected;
+
+        private INavigationService _nav;
+
+        public ValidationViewModel(INavigationService n)
         {
-            ValidationCommand = new RelayCommand(OnClickValidation);
+            _nav = n;
+            ValidateCommand = new RelayCommand(OnClickValidation);
+
+            _userConnected = Singleton.UserDataSingleton.Instance.User;
+
         }
 
-        private void OnClickValidation()
+        private async void OnClickValidation()
         {
-            if (String.IsNullOrEmpty(CreditCardNumber))
+            if (_userConnected == null || !String.IsNullOrEmpty(CreditCardNumber)) return;
+
+            try
             {
-                
+                var result = await ManagementProvider.CheckCreditCardAsync(_userConnected.Token, CreditCardNumber, ExpirationDate.DateTime.ToString("MM/yyyy"));
+
+                if (result.IsValid && !result.HasError)
+                {
+                    _nav.NavigateTo(new Uri("/View/TokenValidationPage.xaml", UriKind.RelativeOrAbsolute));
+                }
+                else
+                {
+                    MessageBox.Show(result.Status);
+                }
             }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+            
         }
     }
 }
