@@ -84,6 +84,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="ApiBestConcert\BestConcertManagement.cs" />
+    <Compile Include="ApiBestConcert\PayementBestConcert.cs" />
     <Compile Include="HttpRequest\HttpExtensions.cs" />
     <Compile Include="HttpRequest\WebRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
