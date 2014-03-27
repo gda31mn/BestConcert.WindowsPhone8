@@ -32,10 +32,10 @@
             </Grid.RowDefinitions>
             
             <TextBlock Grid.Row="0" Text="Credit Card Number" />
-            <TextBox Grid.Row="1" Text="{Binding CreditCardNumber}"/>
+            <TextBox Grid.Row="1" Text="{Binding CreditCardNumber,Mode=TwoWay}"/>
 
             <TextBlock Grid.Row="2" Text="Expiration Date" />
-            <toolkit:DatePicker Grid.Row="3" Value="{Binding ExpirationDate}"/>
+            <toolkit:DatePicker Grid.Row="3" Value="{Binding ExpirationDate,Mode=TwoWay}"/>
             
             <Button Grid.Row="4" Content="Validate" Command="{Binding ValidateCommand}"/>
             

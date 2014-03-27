@@ -9,7 +9,7 @@ namespace BestConcert.WP8.Core.ApiBestConcert
 {
     internal static class PayementBestConcert
     {
-        private const string UrlPayement = "http://bestconcertpaymentapi.azurewebsites.net/";
+        private const string UrlPayement = "http://bestconcertpaymentapi.azurewebsites.net/API";
 
         internal static async Task<string> CheckCreditCardAsync(string userToken, string creditCardNumber, string expirationDate)
         {

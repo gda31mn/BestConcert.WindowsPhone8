@@ -306,9 +306,23 @@ namespace BestConcert.WP8.Core.ApiBestConcert
 
         #region OrderItem
 
-        internal static async Task<string> DeleteOrderItemAsync()
+        internal static async Task<string> DeleteOrderItemAsync(string orderId)
         {
-            return null;
+            try
+            {
+                if (String.IsNullOrEmpty(orderId))
+                    throw new Exception("Invalid Parameter !");
+
+                var requestUrl = string.Format(UrlBestConcert + "/OrderItem/DeleteOrderItem?orderItemId={0}", orderId);             
+
+                var req = await WebRequest.Create(requestUrl, "GET", false);
+
+                return req;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
         #endregion
     }

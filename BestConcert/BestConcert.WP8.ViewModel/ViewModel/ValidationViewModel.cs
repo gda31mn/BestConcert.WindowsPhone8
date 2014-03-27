@@ -27,9 +27,9 @@ namespace BestConcert.WP8.ViewModel.ViewModel
             }
         }
 
-        private DateTimeOffset _expirationDate;
+        private DateTime _expirationDate;
 
-        public DateTimeOffset ExpirationDate
+        public DateTime ExpirationDate
         {
             get { return _expirationDate; }
             set
@@ -52,16 +52,17 @@ namespace BestConcert.WP8.ViewModel.ViewModel
             ValidateCommand = new RelayCommand(OnClickValidation);
 
             _userConnected = Singleton.UserDataSingleton.Instance.User;
+            ExpirationDate = DateTime.Now;
 
         }
 
         private async void OnClickValidation()
         {
-            if (_userConnected == null || !String.IsNullOrEmpty(CreditCardNumber)) return;
+            if (_userConnected == null || String.IsNullOrEmpty(CreditCardNumber)) return;
 
             try
             {
-                var result = await ManagementProvider.CheckCreditCardAsync(_userConnected.Token, CreditCardNumber, ExpirationDate.DateTime.ToString("MM/yyyy"));
+                var result = await ManagementProvider.CheckCreditCardAsync(_userConnected.Token, CreditCardNumber, ExpirationDate.ToString("MM/yyyy"));
 
                 if (result.IsValid && !result.HasError)
                 {

@@ -58,7 +58,7 @@
                 <TextBlock Text="Last Name" Margin="15,0,0,0" Foreground="{StaticResource BlackBrush}"></TextBlock>
                 <TextBox Text="{Binding LastName,Mode=TwoWay}" BorderBrush="{StaticResource GreyBrush}"></TextBox>
                 <TextBlock Text="Password" Margin="15,0,0,0" Foreground="{StaticResource BlackBrush}"></TextBlock>
-                <TextBox Text="{Binding Password,Mode=TwoWay}" BorderBrush="{StaticResource GreyBrush}"></TextBox>
+                <PasswordBox Password="{Binding Password,Mode=TwoWay}" BorderBrush="{StaticResource GreyBrush}"></PasswordBox>
                 <TextBlock Text="Email" Margin="15,0,0,0" Foreground="{StaticResource BlackBrush}"></TextBlock>
                 <TextBox Text="{Binding Email,Mode=TwoWay}" BorderBrush="{StaticResource GreyBrush}"></TextBox>
                 <TextBlock Text="Address" Margin="15,0,0,0" Foreground="{StaticResource BlackBrush}"></TextBlock>

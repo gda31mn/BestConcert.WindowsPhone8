@@ -252,6 +252,20 @@ namespace BestConcert.WP8.Core.Provider
             }
         }
 
+        public static async Task DeleteOrderItemAsync(string orderId)
+        {
+            try
+            {
+                var req = await BestConcertManagement.DeleteOrderItemAsync(orderId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+
+
         #endregion
 
         #region Payement

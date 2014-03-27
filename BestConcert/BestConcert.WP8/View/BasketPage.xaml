@@ -32,6 +32,9 @@
                 <behaviors:ApplicationBarIconButton
 						IconUri="/Assets/phone.png"
 						Text="Payement" Command="{Binding NavToPayement}" />
+                <behaviors:ApplicationBarIconButton
+						IconUri="/Assets/delete.png"
+						Text="Delete item" Command="{Binding DeleteOrderItem}" />
             </behaviors:ApplicationBarBehavior>
         </i:Interaction.Behaviors>
 
@@ -54,7 +57,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <ListBox ItemsSource="{Binding OrderItemList}">
+            <ListBox ItemsSource="{Binding OrderItemList}" SelectedItem="{Binding SelectedItem,Mode=TwoWay}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">

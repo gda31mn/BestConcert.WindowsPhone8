@@ -40,8 +40,17 @@ namespace BestConcert.WP8.ViewModel.ViewModel
             set { _orderItemList = value; RaisePropertyChanged(() => OrderItemList); }
         }
 
+        private OrderItem _selectedItem;
+
+        public OrderItem SelectedItem
+        {
+            get { return _selectedItem; }
+            set { _selectedItem = value; RaisePropertyChanged(() => SelectedItem); }
+        }
+
         public RelayCommand LoadPage { get; set; }
         public RelayCommand NavToPayement { get; set; }
+        public RelayCommand DeleteOrderItem { get; set; }
 
         private INavigationService _nav;
         public BasketViewModel(INavigationService nav)
@@ -49,8 +58,19 @@ namespace BestConcert.WP8.ViewModel.ViewModel
             _nav = nav;
             LoadPage = new RelayCommand(loadPage);
             NavToPayement = new RelayCommand(navtoPayement);
+            DeleteOrderItem = new RelayCommand(deleteOrderItem);
             _orderItemList = new ObservableCollection<OrderItem>();
             User = UserDataSingleton.Instance.User;
+        }
+
+        private async  void deleteOrderItem()
+        {
+            if (SelectedItem != null)
+            {
+                await ManagementProvider.DeleteOrderItemAsync(SelectedItem.Id.ToString());
+                OrderItemList.Remove(SelectedItem);
+                calculPrice();
+            }
         }
 
         private void navtoPayement()
@@ -66,6 +86,7 @@ namespace BestConcert.WP8.ViewModel.ViewModel
 
         private void calculPrice()
         {
+            BasketPrice = 0;
             if (OrderItemList != null)
             {
                 foreach (var orderItem in OrderItemList)
