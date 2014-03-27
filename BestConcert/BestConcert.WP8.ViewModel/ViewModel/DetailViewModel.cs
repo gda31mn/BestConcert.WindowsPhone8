@@ -70,7 +70,7 @@ namespace BestConcert.WP8.ViewModel.ViewModel
             AddToBasket = new RelayCommand(addToBasket);
             Basket = new RelayCommand(basket);
             Cancel = new RelayCommand(goBack);
-            GetCurrentOrder();
+            //GetCurrentOrder();
             BasketVisibilite = Visibility.Collapsed;
             //Test
             _quantity = 5;
@@ -88,6 +88,7 @@ namespace BestConcert.WP8.ViewModel.ViewModel
 
         private void basket()
         {
+            _nav.NavigateTo(new Uri("/View/BasketPage.xaml",UriKind.RelativeOrAbsolute));
             BasketVisibilite = Visibility.Visible;
         }
 

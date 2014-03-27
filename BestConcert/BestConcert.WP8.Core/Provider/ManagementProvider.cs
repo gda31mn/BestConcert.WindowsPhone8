@@ -231,14 +231,11 @@ namespace BestConcert.WP8.Core.Provider
             }
         }
 
-        public static async Task AddOrderItemAsync(string token, string concertId, string quantity)
+        public static async Task<string> AddOrderItemAsync(string token, string concertId, string quantity)
         {
             try
             {
-                var req = await BestConcertManagement.AddOrderItemAsync(token, concertId, quantity);
-                //var result = JsonConvert.DeserializeObject<List<Order>>(req);
-
-                //return result;
+                return await BestConcertManagement.AddOrderItemAsync(token, concertId, quantity);
             }
             catch (Exception ex)
             {
@@ -257,6 +254,20 @@ namespace BestConcert.WP8.Core.Provider
                 throw new Exception(ex.Message);
             }
         }
+
+        public static async Task DeleteOrderItemAsync(string orderId)
+        {
+            try
+            {
+                var req = await BestConcertManagement.DeleteOrderItemAsync(orderId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+
 
         #endregion
 

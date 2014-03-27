@@ -38,7 +38,7 @@ namespace BestConcert.WP8.ViewModel.ViewModel
 
         private async void OnClickValidate()
         {
-            if (!String.IsNullOrEmpty(TokenValidation) || _userConnect == null)
+            if (String.IsNullOrEmpty(TokenValidation) || _userConnect == null)
                 return;
 
             try

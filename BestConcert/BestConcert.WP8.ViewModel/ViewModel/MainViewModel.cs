@@ -154,7 +154,8 @@ namespace BestConcert.WP8.ViewModel.ViewModel
         #region Command
 
         public RelayCommand LoadPage { get; set; }
-        public RelayCommand NavToSecoursList { get; set; }
+        public RelayCommand NavToBasket { get; set; }
+        public RelayCommand NavToOrders { get; set; }
         public RelayCommand Logout { get; set; }
 
         #endregion
@@ -172,8 +173,19 @@ namespace BestConcert.WP8.ViewModel.ViewModel
 
 
             LoadPage = new RelayCommand(loadPage);
-            NavToSecoursList = new RelayCommand(navtoSL);
+            NavToBasket = new RelayCommand(navToBasket);
+            NavToOrders = new RelayCommand(navToOrders);
             Logout = new RelayCommand(logout);
+        }
+
+        private void navToOrders()
+        {
+            nav.NavigateTo(new Uri("/View/OrdersPage.xaml",UriKind.RelativeOrAbsolute));
+        }
+
+        private void navToBasket()
+        {
+            nav.NavigateTo(new Uri("/View/BasketPage.xaml", UriKind.RelativeOrAbsolute));
         }
 
         private void logout()

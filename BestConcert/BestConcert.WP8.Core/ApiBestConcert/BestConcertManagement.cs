@@ -275,9 +275,7 @@ namespace BestConcert.WP8.Core.ApiBestConcert
                     throw new Exception("Invalid Parameter !");
 
                 var requestUrl = string.Format(UrlBestConcert + "/order/addorderitem?token={0}&concertId={1}&quantity={2}", token, concertId, quantity);
-                var req = await WebRequest.Create(requestUrl, "GET", false);
-
-                return req;
+                return await WebRequest.Create(requestUrl, "GET", false);
 
             }
             catch (Exception ex)
@@ -308,9 +306,23 @@ namespace BestConcert.WP8.Core.ApiBestConcert
 
         #region OrderItem
 
-        internal static async Task<string> DeleteOrderItemAsync()
+        internal static async Task<string> DeleteOrderItemAsync(string orderId)
         {
-            return null;
+            try
+            {
+                if (String.IsNullOrEmpty(orderId))
+                    throw new Exception("Invalid Parameter !");
+
+                var requestUrl = string.Format(UrlBestConcert + "/OrderItem/DeleteOrderItem?orderItemId={0}", orderId);             
+
+                var req = await WebRequest.Create(requestUrl, "GET", false);
+
+                return req;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
         #endregion
     }

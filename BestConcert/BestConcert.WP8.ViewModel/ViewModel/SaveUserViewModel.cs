@@ -89,12 +89,21 @@ namespace BestConcert.WP8.ViewModel.ViewModel
 
         private async void checkAction()
         {
-            if (IsValid(_email))
+            if (IsValid(_email) && !string.IsNullOrEmpty(FirstName) && !string.IsNullOrEmpty(LastName) && !string.IsNullOrEmpty(Password) && !string.IsNullOrEmpty(Email))
             {
-                await ManagementProvider.AddUserAsync(FirstName, LastName, CalculateSha1(Password), Email, Address);
-                nav.GoBack();
+                try
+                {
+                    await ManagementProvider.AddUserAsync(FirstName, LastName, CalculateSha1(Password), Email, Address);
+                    nav.GoBack();
+                }
+                catch (Exception)
+                {
+                    
+                    throw;
+                }
+                
             }
-            
+
         }
 
         private static string CalculateSha1(string text)
@@ -115,9 +124,15 @@ namespace BestConcert.WP8.ViewModel.ViewModel
         }
         public bool IsValid(string emailaddress)
         {
+            if (string.IsNullOrEmpty(emailaddress))
+            {
+                return false;
+            }
             try
             {
-                System.Text.RegularExpressions.Regex myRegex = new Regex(@"^([\w]+)@([\w]+)\.([\w]+)$");
+                System.Text.RegularExpressions.Regex myRegex = new Regex(@"^[\w!#$%&'*+\-/=?\^_`{|}~]+(\.[\w!#$%&'*+\-/=?\^_`{|}~]+)*"
++ "@"
++ @"((([\-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))$");
                 //([\w]+) ==> caractère alphanumérique apparaissant une fois ou plus 
                 return myRegex.IsMatch(emailaddress); // retourne true ou false selon la vérification
             }
