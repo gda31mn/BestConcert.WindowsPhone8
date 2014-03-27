@@ -178,7 +178,7 @@ namespace BestConcert.WP8.ViewModel.ViewModel
 
         private void logout()
         {
-            throw new NotImplementedException();
+           nav.NavigateTo(new Uri("/View/LoginPage.xaml",UriKind.RelativeOrAbsolute));
         }
 
         private void navtoSL()
@@ -208,12 +208,6 @@ namespace BestConcert.WP8.ViewModel.ViewModel
                 setPostesListe(true);
             }
         }
-
-        /*private void SelectionChanged(SelectionChangedEventArgs e)
-        {
-            /*int index = ((ListBox)(((ListBoxItem)e.AddedItems[0]).Parent)).Items.IndexOf((ListBoxItem)e.AddedItems[0]);
-            setPostesListe(index);#1#
-        }*/
 
         private void setPostesListe(bool isNull)
         {

@@ -92,8 +92,8 @@ namespace BestConcert.WP8.ViewModel.ViewModel
             nav = n;
             LoginCommand = new RelayCommand(LoginAction);
             SignUpCommand = new RelayCommand(signUpAction);
-            LoginEmail = "tata@tata.fr";
-            LoginPassword = "tototata";
+            LoginEmail = "toto@toto.fr";
+            LoginPassword = "toto";
             VerifVisibility = Visibility.Collapsed;
             ProgressVisibility = Visibility.Collapsed;
             ProgressActive = false;

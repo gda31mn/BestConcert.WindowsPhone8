@@ -25,9 +25,16 @@ namespace BestConcert.WP8.View
         protected override void OnBackKeyPress(CancelEventArgs e)
         {
             if (MessageBox.Show("Are you sure you want to exit?", "Exit?",
-                                    MessageBoxButton.OKCancel) != MessageBoxResult.OK)
+                MessageBoxButton.OKCancel) != MessageBoxResult.OK)
             {
                 e.Cancel = true;
+            }
+            else
+            {
+                while (NavigationService.CanGoBack)
+                {
+                    NavigationService.RemoveBackEntry();
+                }
             }
         }
     }

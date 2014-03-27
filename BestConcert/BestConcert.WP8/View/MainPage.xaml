@@ -18,13 +18,10 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="True"
-    shell:SystemTray.BackgroundColor="{StaticResource PurpleColor}"
+    Background="{StaticResource PurpleBrush}"
     shell:SystemTray.ForegroundColor="{StaticResource WhiteColor}"
-    DataContext="{Binding Source={StaticResource Locator}, Path=Main }">
-
-    <shell:SystemTray.ProgressIndicator>
-        <shell:ProgressIndicator IsVisible="True" Text="BestConcert"/>
-    </shell:SystemTray.ProgressIndicator>
+    DataContext="{Binding Source={StaticResource Locator}, Path=Main }"
+    shell:SystemTray.Opacity="0">
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -350,7 +347,7 @@
     
     
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot">
+    <Grid x:Name="LayoutRoot" Background="#5E5078">
         <i:Interaction.Behaviors>
             <behaviors:ApplicationBarBehavior IsVisible="True">
                 <behaviors:ApplicationBarIconButton
@@ -363,19 +360,19 @@
             </behaviors:ApplicationBarBehavior>
         </i:Interaction.Behaviors>
 
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="Black" Offset="0"/>
-                <GradientStop Color="{StaticResource WhiteColor}"/>
-            </LinearGradientBrush>
-        </Grid.Background>
+
 
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" 
+        <StackPanel Grid.Row="0" Margin="10,20,0,5" >
+            <TextBlock Text="BestConcert" Style="{StaticResource PhoneTextNormalStyle}" Foreground="#FF929397" FontSize="36"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1" 
               Style="{StaticResource MenuGrid}" Background="{x:Null}">
 
             <Grid.RowDefinitions>
@@ -445,7 +442,7 @@
 
         </Grid>
 
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="2" Background="White">
             <phone:Pivot 
                 x:Name="ContentPivot"
                 Margin="0,0,0,0"
@@ -453,11 +450,12 @@
                 ItemContainerStyle="{StaticResource PivotItemStyle1}" 
                 SelectedIndex="{Binding SelectedIndex,Mode=TwoWay}">
 
-                <phone:PivotItem Margin="12,0">
+                <phone:PivotItem Margin="0,0">
                     <ListBox 
                         ItemsSource="{Binding ConcertsListByDate}" 
                         ItemTemplate="{StaticResource ConcertItemTemplate}" 
-                        SelectedItem="{Binding SelectedConcert,Mode=TwoWay}"/>
+                        SelectedItem="{Binding SelectedConcert,Mode=TwoWay}"
+                        />
                 </phone:PivotItem>
 
                 <phone:PivotItem>
