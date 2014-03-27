@@ -119,6 +119,9 @@
     <Compile Include="View\SaveUserPage.xaml.cs">
       <DependentUpon>SaveUserPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\TokenValidationPage.xaml.cs">
+      <DependentUpon>TokenValidationPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\UserControl\SplitPanel.cs" />
     <Compile Include="View\ValidationPage.xaml.cs">
       <DependentUpon>ValidationPage.xaml</DependentUpon>
@@ -150,6 +153,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\SaveUserPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TokenValidationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
