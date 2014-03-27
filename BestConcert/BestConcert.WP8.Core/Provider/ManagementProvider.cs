@@ -58,6 +58,9 @@ namespace BestConcert.WP8.Core.Provider
         {
             try
             {
+                if (String.IsNullOrEmpty(firstName) && String.IsNullOrEmpty(lastName) && String.IsNullOrEmpty(password) && String.IsNullOrEmpty(email))
+                    throw new Exception("Invalid Parameter !");
+
                 var req = await BestConcertManagement.AddUserAsync(firstName, lastName, password, email, address);
                 var result = JsonConvert.DeserializeObject<UserModel>(req);
 
