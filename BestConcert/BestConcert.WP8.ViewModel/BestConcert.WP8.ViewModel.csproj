@@ -87,10 +87,12 @@
     <Compile Include="Singleton\ConcertDataSingleton.cs" />
     <Compile Include="Singleton\UserDataSingleton.cs" />
     <Compile Include="Tools\KingOfConcertGroup.cs" />
+    <Compile Include="ViewModel\BasketViewModel.cs" />
     <Compile Include="ViewModel\DetailViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModelLocator.cs" />
+    <Compile Include="ViewModel\OrdersViewModel.cs" />
     <Compile Include="ViewModel\SaveUserViewModel.cs" />
     <Compile Include="ViewModel\ValidationViewModel.cs" />
   </ItemGroup>

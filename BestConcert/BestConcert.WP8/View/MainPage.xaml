@@ -352,7 +352,10 @@
             <behaviors:ApplicationBarBehavior IsVisible="True">
                 <behaviors:ApplicationBarIconButton
 						IconUri="/Assets/phone.png"
-						Text="Secouristes" Command="{Binding NavToSecoursList}" />
+						Text="Panier" Command="{Binding NavToBasket}" />
+                <behaviors:ApplicationBarIconButton
+						IconUri="/Assets/phone.png"
+						Text="Mes commandes" Command="{Binding NavToOrders}" />
                 <behaviors:ApplicationBarBehavior.MenuItems>
                     <behaviors:ApplicationBarMenuItem Text="Logout" Command="{Binding Logout}"></behaviors:ApplicationBarMenuItem>
                 </behaviors:ApplicationBarBehavior.MenuItems>

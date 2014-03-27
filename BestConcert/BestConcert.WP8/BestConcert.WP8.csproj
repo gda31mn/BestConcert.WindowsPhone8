@@ -101,6 +101,9 @@
       <DependentUpon>BasketUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Tools\KingOfConcertGroup.cs" />
+    <Compile Include="View\BasketPage.xaml.cs">
+      <DependentUpon>BasketPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\DetailPage.xaml.cs">
       <DependentUpon>DetailPage.xaml</DependentUpon>
     </Compile>
@@ -115,6 +118,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="View\OrdersPage.xaml.cs">
+      <DependentUpon>OrdersPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SaveUserPage.xaml.cs">
       <DependentUpon>SaveUserPage.xaml</DependentUpon>
@@ -133,6 +139,10 @@
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\BasketPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\DetailPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -148,6 +158,10 @@
     <Page Include="Resources\ResourcesDictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\OrdersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\SaveUserPage.xaml">
       <SubType>Designer</SubType>

@@ -275,9 +275,7 @@ namespace BestConcert.WP8.Core.ApiBestConcert
                     throw new Exception("Invalid Parameter !");
 
                 var requestUrl = string.Format(UrlBestConcert + "/order/addorderitem?token={0}&concertId={1}&quantity={2}", token, concertId, quantity);
-                var req = await WebRequest.Create(requestUrl, "GET", false);
-
-                return req;
+                return await WebRequest.Create(requestUrl, "GET", false);
 
             }
             catch (Exception ex)
