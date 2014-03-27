@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -17,15 +18,15 @@ namespace BestConcert.WP8.ViewModel.ViewModel
     {
 
         public ConcertModel CurrentConcert { get; set; }
-        private List<OrderItem> _currentOrder;
+        private ObservableCollection<OrderItem> _currentOrder;
 
-        public List<OrderItem> CurrentOrder
+        public ObservableCollection<OrderItem> CurrentOrder
         {
             get { return _currentOrder; }
             set
             {
                 _currentOrder = value;
-                RaisePropertyChanged(() => CurrentOrder);
+                RaisePropertyChanged("CurrentOrder");
             }
         }
         public UserModel CurrentUser { get; set; }
@@ -63,6 +64,9 @@ namespace BestConcert.WP8.ViewModel.ViewModel
             _nav = nav;
             CurrentConcert = Singleton.ConcertDataSingleton.Instance.Concert;
             CurrentUser = Singleton.UserDataSingleton.Instance.User;
+
+            CurrentOrder = new ObservableCollection<OrderItem>();
+
             AddToBasket = new RelayCommand(addToBasket);
             Basket = new RelayCommand(basket);
             Cancel = new RelayCommand(goBack);
@@ -74,7 +78,7 @@ namespace BestConcert.WP8.ViewModel.ViewModel
 
         private async void GetCurrentOrder()
         {
-            CurrentOrder = (await ManagementProvider.GetCurrentOrderFromUserTokenAsync(CurrentUser.Token)).OrderItems;
+            CurrentOrder = new ObservableCollection<OrderItem>((await ManagementProvider.GetCurrentOrderFromUserTokenAsync(CurrentUser.Token)).OrderItems);
         }
 
         private void goBack()

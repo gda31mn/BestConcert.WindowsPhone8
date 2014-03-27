@@ -8,14 +8,14 @@ namespace BestConcert.WP8.Resources
 {
     public partial class BasketUserControl : UserControl
     {
-        public static readonly DependencyProperty ListSourceProperty =
-            DependencyProperty.Register("ListSource", typeof(string), typeof(BasketUserControl), new PropertyMetadata(default(ObservableCollection<Order>)));
-
-        public ObservableCollection<Order> ListSource
+        public ObservableCollection<OrderItem> ListSource
         {
-            get { return (ObservableCollection<Order>)GetValue(ListSourceProperty); }
+            get { return (ObservableCollection<OrderItem>)GetValue(ListSourceProperty); }
             set { SetValue(ListSourceProperty, value); }
         }
+
+        public static readonly DependencyProperty ListSourceProperty =
+            DependencyProperty.Register("ListSource", typeof(ObservableCollection<OrderItem>), typeof(BasketUserControl), new PropertyMetadata(new ObservableCollection<OrderItem>()));
 
         public event EventHandler CloseClick;
 
@@ -25,6 +25,7 @@ namespace BestConcert.WP8.Resources
             LayoutRoot.DataContext = this;
             CloseButton.Click += CloseButtonOnClick;
         }
+
 
         private void CloseButtonOnClick(object sender, RoutedEventArgs routedEventArgs)
         {

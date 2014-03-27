@@ -15,9 +15,14 @@
     xmlns:Command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
     xmlns:behaviors="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
     xmlns:resources="clr-namespace:BestConcert.WP8.Resources"
+    xmlns:converter="clr-namespace:BestConcert.WP8.Converter"
     shell:SystemTray.IsVisible="True"
     DataContext="{Binding Detail,Source={StaticResource Locator}}">
 
+    <phone:PhoneApplicationPage.Resources>
+        <converter:DebugConverter x:Key="DebugConverter"/>
+    </phone:PhoneApplicationPage.Resources>
+    
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <i:Interaction.Behaviors>
@@ -38,7 +43,6 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <resources:BasketUserControl Grid.Row="0" Grid.RowSpan="2" x:Name="basket" ListSource="{Binding CurrentOrder}" Visibility="{Binding BasketVisibilite,Mode=TwoWay}" CloseClick="CloseBasket" />
         <!--TitlePanel contains the name of the application and page title-->
             <StackPanel Grid.Row="0" Margin="12,17,0,28">
                 <TextBlock Text="MY APPLICATION" Style="{StaticResource PhoneTextNormalStyle}"/>
@@ -56,6 +60,9 @@
                 <TextBlock Text="{Binding CurrentConcert.Price,Converter={StaticResource PriceToEuroConverter}}" Margin="15,0,0,0"></TextBlock>
             </StackPanel>
         </Grid>
+
+        <resources:BasketUserControl Grid.Row="0" Grid.RowSpan="2" x:Name="basket" ListSource="{Binding CurrentOrder,Converter={StaticResource DebugConverter}}" Visibility="{Binding BasketVisibilite,Mode=TwoWay}" CloseClick="CloseBasket" />
+
     </Grid>
 
 </phone:PhoneApplicationPage>

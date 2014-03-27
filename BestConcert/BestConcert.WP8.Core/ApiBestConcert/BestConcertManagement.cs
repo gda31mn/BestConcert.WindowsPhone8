@@ -11,7 +11,7 @@ namespace BestConcert.WP8.Core.ApiBestConcert
 {
     internal static class BestConcertManagement
     {
-        private const string UrlBestConcert = "http://webserviceing3.cloudapp.net/API/";
+        private const string UrlBestConcert = "http://ingesupwebservice.cloudapp.net/API/";
 
         #region User
         internal static async Task<object[]> Login(string username, string password)
