@@ -30,7 +30,6 @@ namespace BestConcert.WP8.ViewModel.ViewModel
     {
         #region properties
 
-        public UserModel secouriste { get; set; }
 
         private ConcertModel _selectedConcert;
 
@@ -119,7 +118,7 @@ namespace BestConcert.WP8.ViewModel.ViewModel
             {
                 _selectedSearch = value;
                 RaisePropertyChanged(() => SelectedSearch);
-                setSearchPoste(SearchValue);
+                setSearchConcert(SearchValue);
             }
         }
 
@@ -252,7 +251,7 @@ namespace BestConcert.WP8.ViewModel.ViewModel
             initList();
         }
 
-        private void setSearchPoste(string name)
+        private void setSearchConcert(string name)
         {
             switch (SelectedIndex)
             {

@@ -34,6 +34,10 @@ namespace BestConcert.WP8.ViewModel.ViewModel
         public RelayCommand AddToBasket { get; set; }
         public RelayCommand Basket { get; set; }
         public RelayCommand Cancel { get; set; }
+        public RelayCommand IncreaseQuantity { get; set; }
+        public RelayCommand DecreaseQuantity { get; set; }
+        public RelayCommand LoadPage { get; set; }
+            
 
         private int _quantity;
 
@@ -44,17 +48,6 @@ namespace BestConcert.WP8.ViewModel.ViewModel
             {
                 _quantity = value;
                 RaisePropertyChanged(() => Quantity);
-            }
-        }
-        private Visibility _basketVisibilite;
-
-        public Visibility BasketVisibilite
-        {
-            get { return _basketVisibilite; }
-            set
-            {
-                _basketVisibilite = value;
-                RaisePropertyChanged(() => BasketVisibilite);
             }
         }
         
@@ -70,10 +63,28 @@ namespace BestConcert.WP8.ViewModel.ViewModel
             AddToBasket = new RelayCommand(addToBasket);
             Basket = new RelayCommand(basket);
             Cancel = new RelayCommand(goBack);
+            IncreaseQuantity = new RelayCommand(increaseQuantity);
+            DecreaseQuantity = new RelayCommand(decreaseQuantity);
+            LoadPage = new RelayCommand(loadPage);
             //GetCurrentOrder();
-            BasketVisibilite = Visibility.Collapsed;
-            //Test
-            _quantity = 5;
+        }
+
+        private void loadPage()
+        {
+            Quantity = 1;
+        }
+
+        private void decreaseQuantity()
+        {
+            if (Quantity > 1)
+            {
+                Quantity--;
+            }
+        }
+
+        private void increaseQuantity()
+        {
+            Quantity++;
         }
 
         private async void GetCurrentOrder()
@@ -89,7 +100,6 @@ namespace BestConcert.WP8.ViewModel.ViewModel
         private void basket()
         {
             _nav.NavigateTo(new Uri("/View/BasketPage.xaml",UriKind.RelativeOrAbsolute));
-            BasketVisibilite = Visibility.Visible;
         }
 
         private async void addToBasket()

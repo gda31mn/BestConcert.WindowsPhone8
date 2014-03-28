@@ -19,10 +19,12 @@
     shell:SystemTray.IsVisible="True"
     DataContext="{Binding Detail,Source={StaticResource Locator}}">
 
-    <phone:PhoneApplicationPage.Resources>
-        <converter:DebugConverter x:Key="DebugConverter"/>
-    </phone:PhoneApplicationPage.Resources>
-    
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <Command:EventToCommand Command="{Binding LoadPage}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <i:Interaction.Behaviors>
@@ -38,19 +40,18 @@
 						Text="Cancel" Command="{Binding Cancel}"/>
             </behaviors:ApplicationBarBehavior>
         </i:Interaction.Behaviors>
-        
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <!--TitlePanel contains the name of the application and page title-->
-            <StackPanel Grid.Row="0" Margin="12,17,0,28">
-                <TextBlock Text="MY APPLICATION" Style="{StaticResource PhoneTextNormalStyle}"/>
-                <TextBlock Text="page name" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
-            </StackPanel>
+        <StackPanel Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock Text="Detail" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        </StackPanel>
 
-        
-            <!--ContentPanel - place additional content here-->
+
+        <!--ContentPanel - place additional content here-->
         <Grid Grid.Row="1" Margin="12,0,12,0">
             <StackPanel>
                 <TextBlock Text="{Binding CurrentConcert.Date}" Margin="15,0,0,0"></TextBlock>
@@ -58,10 +59,14 @@
                 <TextBlock Text="{Binding CurrentConcert.Artist}" Margin="15,0,0,0"></TextBlock>
                 <TextBlock Text="{Binding CurrentConcert.Location}" Margin="15,0,0,0"></TextBlock>
                 <TextBlock Text="{Binding CurrentConcert.Price,Converter={StaticResource PriceToEuroConverter}}" Margin="15,0,0,0"></TextBlock>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                    <Button Content="-" Width="80" Command="{Binding DecreaseQuantity}"></Button>
+                        <TextBlock Width="20" TextAlignment="Center" Text="{Binding Quantity}" VerticalAlignment="Center"></TextBlock>
+                    <Button Content="+" Width="80" Command="{Binding IncreaseQuantity}"></Button>
+                </StackPanel>
+
             </StackPanel>
         </Grid>
-
-        <resources:BasketUserControl Grid.Row="0" Grid.RowSpan="2" x:Name="basket" ListSource="{Binding CurrentOrder,Converter={StaticResource DebugConverter}}" Visibility="{Binding BasketVisibilite,Mode=TwoWay}" CloseClick="CloseBasket" />
 
     </Grid>
 

@@ -75,6 +75,7 @@ namespace BestConcert.WP8.ViewModel.ViewModel
 
         private void navtoPayement()
         {
+            if(OrderItemList.Count > 0)
             _nav.NavigateTo(new Uri("/View/ValidationPage.xaml",UriKind.RelativeOrAbsolute));
         }
 

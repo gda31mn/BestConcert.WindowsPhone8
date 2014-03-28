@@ -16,10 +16,5 @@ namespace BestConcert.WP8.View
         {
             InitializeComponent();
         }
-
-        private void CloseBasket(object sender, EventArgs e)
-        {
-            basket.Visibility = Visibility.Collapsed;
-        }
     }
 }

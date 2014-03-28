@@ -256,7 +256,7 @@ namespace BestConcert.WP8.Core.ApiBestConcert
                 if (String.IsNullOrEmpty(token))
                     throw new Exception("Invalid Parameter !");
 
-                var requestUrl = string.Format(UrlBestConcert + "/order/gethistoryordersfromuserid?token={0}", token);
+                var requestUrl = string.Format(UrlBestConcert + "/Order/GetHistoryOrdersFromUserId?token={0}", token);
                 var req = await WebRequest.Create(requestUrl, "GET", false);
 
                 return req;
