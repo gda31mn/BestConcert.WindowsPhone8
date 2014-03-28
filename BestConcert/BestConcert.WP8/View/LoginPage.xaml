@@ -12,8 +12,8 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True"
-    shell:SystemTray.BackgroundColor="{StaticResource PurpleColor}"
-    shell:SystemTray.ForegroundColor="{StaticResource WhiteColor}"
+    shell:SystemTray.BackgroundColor="{StaticResource DarkColor}"
+    shell:SystemTray.ForegroundColor="{StaticResource RedColor}"
     DataContext="{Binding Login,Source={StaticResource Locator}}">
 
     <shell:SystemTray.ProgressIndicator>
@@ -21,7 +21,7 @@
     </shell:SystemTray.ProgressIndicator>
 
     <phone:PhoneApplicationPage.Resources>
-        
+
         <Style x:Key="LoginButton" TargetType="Button">
             <Setter Property="Background" Value="#74675A" />
             <Setter Property="FontSize" Value="32" />
@@ -251,23 +251,23 @@
         <Grid.Background>
             <ImageBrush Stretch="Fill" ImageSource="/Assets/Image/concert.png"/>
         </Grid.Background>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
-
-
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <StackPanel>
-                <TextBox  x:Name="EmailTextBox"  Text="{Binding LoginEmail, Mode=TwoWay}" Style="{StaticResource MailTextStyle}" Width="320"/>
-            </StackPanel>
-            <StackPanel>
-                <PasswordBox  x:Name="PasswordTextBox"  Password="{Binding LoginPassword,Mode=TwoWay}" Style="{StaticResource PassTextStyle}" Width="320"/>
-            </StackPanel>
-            <ProgressBar IsIndeterminate="True"  Visibility="{Binding ProgressVisibility,Mode=TwoWay}"  Height="20" Foreground="White" />
-            <TextBlock Foreground="White" HorizontalAlignment="Center" Text="Vérifier vos informations" Visibility="{Binding VerifVisibility}"/>
+        <ProgressBar Grid.Row="0" IsIndeterminate="True"  Visibility="{Binding ProgressVisibility,Mode=TwoWay}"  Height="20" Foreground="White" VerticalAlignment="Top" />
+        
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBox  x:Name="EmailTextBox"  Text="{Binding LoginEmail, Mode=TwoWay}" Style="{StaticResource MailTextStyle}" Width="320"/>
+            <PasswordBox  x:Name="PasswordTextBox"  Password="{Binding LoginPassword,Mode=TwoWay}" Style="{StaticResource PassTextStyle}" Width="320"/>
             <Button x:Name="LoginButton" Content="Log in" Command="{Binding LoginCommand}" Style="{StaticResource LoginButton}" Template="{StaticResource LognButtonStyle}"/>
             <Button x:Name="CreateButton" Content="Sign up" Command="{Binding SignUpCommand}" Style="{StaticResource LoginButton}" Template="{StaticResource LognButtonStyle}"/>
-            <TextBlock Foreground="Black" HorizontalAlignment="Center" Text="Connection..." Visibility="{Binding ProgressVisibility,Mode=TwoWay}"/>
-
         </StackPanel>
+        <TextBlock Grid.Row="2" Foreground="{StaticResource RedBrush}" HorizontalAlignment="Center" Text="Vérifier vos informations" Visibility="{Binding VerifVisibility}"/>
+
     </Grid>
 
 </phone:PhoneApplicationPage>

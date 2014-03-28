@@ -2,17 +2,18 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <!-- Color -->
-    <Color x:Key="WhiteColor">#FFFCFDFD</Color>
-    <SolidColorBrush x:Key="WhiteBrush" Color="{StaticResource WhiteColor}"/>
+
+    <Color x:Key="DarkColor">#2E2E2E</Color>
+    <SolidColorBrush x:Key="DarkBrush" Color="{StaticResource DarkColor}"/>
+
+    <Color x:Key="RedColor">#EE3B3B</Color>
+    <SolidColorBrush x:Key="RedBrush" Color="{StaticResource RedColor}"/>
+
+    <Color x:Key="LightColor">#E7E7E7</Color>
+    <SolidColorBrush x:Key="LightBrush" Color="{StaticResource LightColor}"/>
 
     <Color x:Key="GreyColor">#b5b6b4</Color>
     <SolidColorBrush x:Key="GreyBrush" Color="{StaticResource GreyColor}"/>
-
-    <Color x:Key="BlackColor">#FF000000</Color>
-    <SolidColorBrush x:Key="BlackBrush" Color="{StaticResource BlackColor}"/>
-
-    <Color x:Key="PurpleColor">#5E5078</Color>
-    <SolidColorBrush x:Key="PurpleBrush" Color="{StaticResource PurpleColor}"/>
     
     <!-- DataTemplate -->
     

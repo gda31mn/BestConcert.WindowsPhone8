@@ -18,11 +18,16 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="True"
-    Background="{StaticResource PurpleBrush}"
-    shell:SystemTray.ForegroundColor="{StaticResource WhiteColor}"
+    Background="{StaticResource DarkBrush}"
+    shell:SystemTray.BackgroundColor="{StaticResource DarkColor}"
+    shell:SystemTray.ForegroundColor="{StaticResource RedColor}"
     DataContext="{Binding Source={StaticResource Locator}, Path=Main }"
-    shell:SystemTray.Opacity="0">
+    >
 
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator IsVisible="True" Text="BestConcert"/>
+    </shell:SystemTray.ProgressIndicator>
+    
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <command:EventToCommand Command="{Binding LoadPage}" />
@@ -30,10 +35,7 @@
     </i:Interaction.Triggers>
     
     <phone:PhoneApplicationPage.Resources>
-        
-        <Style x:Key="MenuGrid" TargetType="Grid">
-            <Setter Property="Background" Value="#DC7563" />
-        </Style>
+
         <Style x:Key="TextBlockText" TargetType="TextBlock">
             <Setter Property="FontSize" Value="20" />
             <Setter Property="FontWeight" Value="SemiBold" />
@@ -298,48 +300,34 @@
             </Setter>
         </Style>
         <DataTemplate x:Key="ConcertItemTemplate">
-            <Border BorderThickness="3">
-                <StackPanel >
-                    <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="450">
-                        <Grid Margin="0" VerticalAlignment="Center">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="108*"/>
-                                <ColumnDefinition Width="73*"/>
-                                <ColumnDefinition Width="44*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="8*"/>
-                                <RowDefinition Height="5*"/>
-                                <RowDefinition Height="3*"/>
-                            </Grid.RowDefinitions>
-                            <Rectangle Fill="#FF3C8EF1" Margin="0" Grid.ColumnSpan="3"/>
-                            <TextBlock Foreground="Black" Text="{Binding Artist}" Margin="5,0,0,0" FontSize="17.333" Grid.ColumnSpan="3" FontWeight="Bold"/>
-                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Date, StringFormat=\{0:D\}}" VerticalAlignment="Top" Grid.Row="1" FontSize="21.333" Foreground="Black" Margin="30,0,0,0" Grid.ColumnSpan="2"/>
-                            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="2" Orientation="Horizontal" Margin="30,0,0,0" Width="176" Height="25">
-                                <Rectangle Height="20" Width="20" Fill="#FFAEAEAE" HorizontalAlignment="Center" Margin="0" >
-                                    <Rectangle.OpacityMask>
-                                        <ImageBrush ImageSource="/Assets/building.png"/>
-                                    </Rectangle.OpacityMask>
-                                </Rectangle>
-                                <TextBlock Text="{Binding Location}" Margin="5,0,0,0" FontSize="14.667" Foreground="#AA000000" HorizontalAlignment="Left" Height="20" VerticalAlignment="Center"/>
-                            </StackPanel>
-                            <StackPanel HorizontalAlignment="Left" Grid.RowSpan="3" VerticalAlignment="Top" Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Margin="0" Height="25">
-                                <Rectangle Fill="#FFAEAEAE" Margin="0" Height="20" Width="20" HorizontalAlignment="Center">
-                                    <Rectangle.OpacityMask>
-                                        <ImageBrush Stretch="Fill" ImageSource="/Assets/clock.png"/>
-                                    </Rectangle.OpacityMask>
-                                </Rectangle>
-                                <TextBlock Text="{Binding HeureDebut, StringFormat=\{0:t\} -}" Margin="5,0,0,0" FontSize="14.667" Foreground="#AA000000" HorizontalAlignment="Center" Height="20" VerticalAlignment="Center"/>
-                                <TextBlock Text="{Binding HeureFin, StringFormat=\{0:t\}}" Margin="5,0,0,0" FontSize="16" Foreground="#AA000000" HorizontalAlignment="Left" Height="20" VerticalAlignment="Center"/>
-                            </StackPanel>
-                            <Rectangle Fill="#FF545554" Grid.Column="2" Margin="0" Grid.Row="1" Width="30" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.RowSpan="2">
-                                <Rectangle.OpacityMask>
-                                    <ImageBrush Stretch="Fill" />
-                                </Rectangle.OpacityMask>
+            <Border BorderThickness="3" Background="{StaticResource GreyBrush}">
+                <Border BorderBrush="{StaticResource DarkBrush}" BorderThickness="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="450">
+                    <Grid Margin="0" VerticalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="108*"/>
+                            <ColumnDefinition Width="73*"/>
+                            <ColumnDefinition Width="44*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="8*"/>
+                            <RowDefinition Height="5*"/>
+                            <RowDefinition Height="3*"/>
+                        </Grid.RowDefinitions>
+                        <Rectangle Fill="{StaticResource DarkBrush}" Margin="0" Grid.ColumnSpan="3"/>
+                        <TextBlock Foreground="{StaticResource LightBrush}" Text="{Binding Artist}" Margin="5,0,0,0" FontSize="17.333" Grid.ColumnSpan="3" FontWeight="Bold"/>
+                        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Date, StringFormat=\{0:D\}}" VerticalAlignment="Top" Grid.Row="1" FontSize="21.333" Foreground="Black" Margin="30,0,0,0" Grid.ColumnSpan="2"/>
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="2" Orientation="Horizontal" Margin="30,0,0,0" Width="176" Height="25">
+                            <Grid Height="20" Width="20" Margin="0" Background="{StaticResource DarkBrush}">
+							<Rectangle  HorizontalAlignment="Center" Height="20" Width="20" >
+                            	<Rectangle.Fill>
+                            		<ImageBrush Stretch="Fill" ImageSource="/BestConcert.WP8;component/Assets/Image/appbar.location.round.png"/>
+                            	</Rectangle.Fill>
                             </Rectangle>
-                        </Grid>
-                    </Border>
-                </StackPanel>
+							</Grid>
+                            <TextBlock Text="{Binding Location}" Margin="5,0,0,0" FontSize="14.667" Foreground="#AA000000" HorizontalAlignment="Left" Height="20" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
             </Border>
         </DataTemplate>
         
@@ -347,7 +335,7 @@
     
     
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="#5E5078">
+    <Grid x:Name="LayoutRoot" Background="{StaticResource DarkBrush}" Margin="0 -2 0 0">
         <i:Interaction.Behaviors>
             <behaviors:ApplicationBarBehavior IsVisible="True">
                 <behaviors:ApplicationBarIconButton
@@ -363,20 +351,13 @@
             </behaviors:ApplicationBarBehavior>
         </i:Interaction.Behaviors>
 
-
-
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Margin="10,20,0,5" >
-            <TextBlock Text="BestConcert" Style="{StaticResource PhoneTextNormalStyle}" Foreground="#FF929397" FontSize="36"/>
-        </StackPanel>
-
-        <Grid Grid.Row="1" 
-              Style="{StaticResource MenuGrid}" Background="{x:Null}">
+        <Grid Grid.Row="1" Background="{x:Null}">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -388,7 +369,6 @@
                      ScrollViewer.VerticalScrollBarVisibility="Disabled"
                      ItemContainerStyle="{StaticResource ListBoxItemStyle}"                     
                      SelectedIndex="{Binding SelectedIndex, ElementName=ContentPivot, Mode=TwoWay}"
-                     Background="#5E5078"
                      >
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -445,7 +425,8 @@
 
         </Grid>
 
-        <Grid Grid.Row="2" Background="White">
+        <Grid Grid.Row="2" Background="{StaticResource LightBrush}">
+            
             <phone:Pivot 
                 x:Name="ContentPivot"
                 Margin="0,0,0,0"
@@ -458,6 +439,7 @@
                         ItemsSource="{Binding ConcertsListByDate}" 
                         ItemTemplate="{StaticResource ConcertItemTemplate}" 
                         SelectedItem="{Binding SelectedConcert,Mode=TwoWay}"
+                        Margin="20 10 20 0"
                         />
                 </phone:PivotItem>
 

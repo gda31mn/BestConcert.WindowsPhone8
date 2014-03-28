@@ -28,10 +28,10 @@ namespace BestConcert.WP8.UnitTest
         [Test]
         public void AddUser()
         {
-                Assert.Catch( async () =>
-                {
-                    await ManagementProvider.AddUserAsync("", "", "", "", "");
-                }, "Invalid Parameter !");
+            Assert.Catch(async () =>
+            {
+                await ManagementProvider.AddUserAsync("", "", "", "", "");
+            }, "Invalid Parameter !");
         }
 
     }
