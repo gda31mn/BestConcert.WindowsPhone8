@@ -14,17 +14,22 @@
     xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WP8"
     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
     DataContext="{Binding Source={StaticResource Locator}, Path=Orders }"
+    shell:SystemTray.BackgroundColor="{StaticResource DarkColor}"
+    shell:SystemTray.ForegroundColor="{StaticResource RedColor}"
     shell:SystemTray.IsVisible="True">
 
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator IsVisible="True" Text="BestConcert"/>
+    </shell:SystemTray.ProgressIndicator>
+    
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <command:EventToCommand Command="{Binding LoadPage}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
     
-    
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot" Background="{StaticResource LightBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -32,8 +37,7 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="MY APPLICATION" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="page name" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock Text="Commandes" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Foreground="{StaticResource RedBrush}"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
@@ -45,8 +49,8 @@
             <ListBox ItemsSource="{Binding OrderList}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding ValidationDate}"></TextBlock>
+                        <StackPanel Orientation="Horizontal" Background="{StaticResource DarkBrush}">
+                            <TextBlock Text="{Binding ValidationDate}" Foreground="{StaticResource LightBrush}"></TextBlock>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
