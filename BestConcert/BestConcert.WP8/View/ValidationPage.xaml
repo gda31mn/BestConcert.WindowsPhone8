@@ -13,16 +13,27 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True"
-    DataContext="{Binding Source={StaticResource Locator}, Path=Validation}">
+    DataContext="{Binding Source={StaticResource Locator}, Path=Validation}"
+    shell:SystemTray.BackgroundColor="{StaticResource DarkColor}"
+    shell:SystemTray.ForegroundColor="{StaticResource RedColor}">
 
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator IsVisible="True" Text="BestConcert"/>
+    </shell:SystemTray.ProgressIndicator>
+    
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent" Margin="0 50 0 0">
+    <Grid x:Name="LayoutRoot" Background="{StaticResource LightBrush}" Margin="0 0 0 0">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+        <StackPanel Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock Text="Validation" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Foreground="{StaticResource RedBrush}"/>
+        </StackPanel>
+
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Margin="12,0,12,0">
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -31,13 +42,13 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             
-            <TextBlock Grid.Row="0" Text="Credit Card Number" />
-            <TextBox Grid.Row="1" Text="{Binding CreditCardNumber,Mode=TwoWay}"/>
+            <TextBlock Grid.Row="0" Text="Credit Card Number" Foreground="{StaticResource DarkBrush}" FontWeight="Bold"/>
+            <TextBox Grid.Row="1" Text="{Binding CreditCardNumber,Mode=TwoWay}" BorderBrush="{StaticResource DarkBrush}"/>
 
-            <TextBlock Grid.Row="2" Text="Expiration Date" />
-            <toolkit:DatePicker Grid.Row="3" Value="{Binding ExpirationDate,Mode=TwoWay}"/>
+            <TextBlock Grid.Row="2" Text="Expiration Date" Foreground="{StaticResource DarkBrush}" FontWeight="Bold"/>
+            <toolkit:DatePicker Grid.Row="3" Value="{Binding ExpirationDate,Mode=TwoWay}" BorderBrush="{StaticResource DarkBrush}" Foreground="{StaticResource DarkBrush}"/>
             
-            <Button Grid.Row="4" Content="Validate" Command="{Binding ValidateCommand}"/>
+            <Button Grid.Row="4" Content="Validate" Command="{Binding ValidateCommand}" BorderBrush="{StaticResource DarkBrush}" Foreground="{StaticResource DarkBrush}" Margin="0,20,0,0"/>
             
         </Grid>
     </Grid>

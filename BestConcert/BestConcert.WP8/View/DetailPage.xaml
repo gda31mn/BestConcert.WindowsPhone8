@@ -17,7 +17,13 @@
     xmlns:resources="clr-namespace:BestConcert.WP8.Resources"
     xmlns:converter="clr-namespace:BestConcert.WP8.Converter"
     shell:SystemTray.IsVisible="True"
+    shell:SystemTray.BackgroundColor="{StaticResource DarkColor}"
+    shell:SystemTray.ForegroundColor="{StaticResource RedColor}"
     DataContext="{Binding Detail,Source={StaticResource Locator}}">
+
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator IsVisible="True" Text="BestConcert"/>
+    </shell:SystemTray.ProgressIndicator>
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -26,7 +32,7 @@
     </i:Interaction.Triggers>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot" Background="{StaticResource LightBrush}" Margin="0 -2 0 0">
         <i:Interaction.Behaviors>
             <behaviors:ApplicationBarBehavior Mode="Default" IsMenuEnabled="True" IsVisible="True" Opacity="0.2">
                 <behaviors:ApplicationBarIconButton
@@ -47,22 +53,42 @@
         </Grid.RowDefinitions>
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="Detail" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock Text="Detail" Margin="9,-7,0,0" Foreground="{StaticResource RedBrush}" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
 
         <!--ContentPanel - place additional content here-->
         <Grid Grid.Row="1" Margin="12,0,12,0">
             <StackPanel>
-                <TextBlock Text="{Binding CurrentConcert.Date}" Margin="15,0,0,0"></TextBlock>
-                <TextBlock Text="{Binding CurrentConcert.Genre}" Margin="15,0,0,0"></TextBlock>
-                <TextBlock Text="{Binding CurrentConcert.Artist}" Margin="15,0,0,0"></TextBlock>
-                <TextBlock Text="{Binding CurrentConcert.Location}" Margin="15,0,0,0"></TextBlock>
-                <TextBlock Text="{Binding CurrentConcert.Price,Converter={StaticResource PriceToEuroConverter}}" Margin="15,0,0,0"></TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Date:" Foreground="{StaticResource DarkBrush}" FontWeight="Bold" />
+                    <TextBlock Text="{Binding CurrentConcert.Date}" Margin="15,0,0,0" Foreground="{StaticResource DarkBrush}"/>
+                </StackPanel>
+                
+                <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                    <TextBlock Text="Genre:" Foreground="{StaticResource DarkBrush}" FontWeight="Bold" />
+                    <TextBlock Text="{Binding CurrentConcert.Genre}" Margin="15,0,0,0" Foreground="{StaticResource DarkBrush}"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                    <TextBlock Text="Artiste:" Foreground="{StaticResource DarkBrush}" FontWeight="Bold" />
+                    <TextBlock Text="{Binding CurrentConcert.Artist}" Margin="15,0,0,0" Foreground="{StaticResource DarkBrush}"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                    <TextBlock Text="Localization:" Foreground="{StaticResource DarkBrush}" FontWeight="Bold" />
+                    <TextBlock Text="{Binding CurrentConcert.Location}" Margin="15,0,0,0" Foreground="{StaticResource DarkBrush}"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                    <TextBlock Text="Prix:" Foreground="{StaticResource DarkBrush}" FontWeight="Bold" />
+                    <TextBlock Text="{Binding CurrentConcert.Price,Converter={StaticResource PriceToEuroConverter}}" Margin="15,0,0,0" Foreground="{StaticResource DarkBrush}" />
+                </StackPanel>
+                
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-                    <Button Content="-" Width="80" Command="{Binding DecreaseQuantity}"></Button>
-                        <TextBlock Width="20" TextAlignment="Center" Text="{Binding Quantity}" VerticalAlignment="Center"></TextBlock>
-                    <Button Content="+" Width="80" Command="{Binding IncreaseQuantity}"></Button>
+                    <Button Content="-" Width="80" Command="{Binding DecreaseQuantity}" BorderBrush="{StaticResource DarkBrush}" Foreground="{StaticResource DarkBrush}"></Button>
+                    <TextBlock Width="20" TextAlignment="Center" Text="{Binding Quantity}" VerticalAlignment="Center" Foreground="{StaticResource DarkBrush}"></TextBlock>
+                    <Button Content="+" Width="80" Command="{Binding IncreaseQuantity}" BorderBrush="{StaticResource DarkBrush}" Foreground="{StaticResource DarkBrush}"></Button>
                 </StackPanel>
 
             </StackPanel>

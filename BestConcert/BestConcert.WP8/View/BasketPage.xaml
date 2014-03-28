@@ -15,8 +15,14 @@
     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
     xmlns:behaviors="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
     DataContext="{Binding Source={StaticResource Locator}, Path=Basket }"
+    shell:SystemTray.BackgroundColor="{StaticResource DarkColor}"
+    shell:SystemTray.ForegroundColor="{StaticResource RedColor}"
     shell:SystemTray.IsVisible="True">
 
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator IsVisible="True" Text="BestConcert"/>
+    </shell:SystemTray.ProgressIndicator>
+    
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <command:EventToCommand Command="{Binding LoadPage}" />
@@ -25,7 +31,7 @@
     
     
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot" Background="{StaticResource LightBrush}" Margin="0 -2 0 0">
 
         <i:Interaction.Behaviors>
             <behaviors:ApplicationBarBehavior IsVisible="True">
@@ -39,17 +45,25 @@
         </i:Interaction.Behaviors>
 
 
-
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="MY APPLICATION" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="Panier" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
-        </StackPanel>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Panier" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Foreground="{StaticResource RedBrush}"/>
+            <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="Price" Foreground="{StaticResource DarkBrush}">
+                    <Run Text="Total à payer : "></Run>
+                    <Run Text="{Binding BasketPrice}"></Run>
+                </TextBlock>
+            </StackPanel>
+        </Grid>
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
@@ -60,19 +74,14 @@
             <ListBox ItemsSource="{Binding OrderItemList}" SelectedItem="{Binding SelectedItem,Mode=TwoWay}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Quantity}"></TextBlock>
-                            <TextBlock Text="{Binding Concert.Artist}"></TextBlock>
+                        <StackPanel Orientation="Horizontal" Background="{StaticResource GreyBrush}">
+                            <TextBlock Text="{Binding Quantity}" Foreground="{StaticResource DarkBrush}"/>
+                            <TextBlock Text="{Binding Concert.Artist}" Foreground="{StaticResource DarkBrush}"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <StackPanel Grid.Row="1" HorizontalAlignment="Center">
-                <TextBlock Text="Price">
-                    <Run Text="Total à payer : "></Run>
-                    <Run Text="{Binding BasketPrice}"></Run>
-                </TextBlock>
-            </StackPanel>
+            
         </Grid>
     </Grid>
 
