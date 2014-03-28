@@ -32,7 +32,7 @@
             </Grid.RowDefinitions>
             
             <TextBlock Grid.Row="0" Text="Credit Card Number" />
-            <TextBox Grid.Row="1" Text="{Binding CreditCardNumber,Mode=TwoWay}"/>
+            <TextBox Grid.Row="1" Text="{Binding CreditCardNumber,Mode=TwoWay}" TextChanged="TextBox_TextChanged"/>
 
             <TextBlock Grid.Row="2" Text="Expiration Date" />
             <toolkit:DatePicker Grid.Row="3" Value="{Binding ExpirationDate,Mode=TwoWay}"/>
