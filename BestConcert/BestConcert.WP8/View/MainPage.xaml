@@ -66,12 +66,12 @@
                                     </VisualState>
                                     <VisualState x:Name="Selected">
                                         <Storyboard>
-                                            <ColorAnimation Duration="0" To="{StaticResource PhoneAccentColor}" Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="ContentContainer" d:IsOptimized="True"/>
+                                            <ColorAnimation Duration="0" To="{StaticResource RedColor}" Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="ContentContainer" d:IsOptimized="True"/>
                                         </Storyboard>
                                     </VisualState>
                                     <VisualState x:Name="SelectedUnfocused">
                                         <Storyboard>
-                                            <ColorAnimation Duration="0" To="{StaticResource PhoneAccentColor}" Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="ContentContainer" d:IsOptimized="True"/>
+                                            <ColorAnimation Duration="0" To="{StaticResource RedColor}" Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="ContentContainer" d:IsOptimized="True"/>
                                         </Storyboard>
                                     </VisualState>
                                 </VisualStateGroup>

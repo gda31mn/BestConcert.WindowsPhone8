@@ -53,6 +53,7 @@ namespace BestConcert.WP8.ViewModel.ViewModel
 
             _userConnected = Singleton.UserDataSingleton.Instance.User;
             ExpirationDate = DateTime.Now;
+            CreditCardNumber = 12345678912345.ToString();
 
         }
 
